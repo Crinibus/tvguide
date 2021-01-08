@@ -10,13 +10,13 @@ A program that gives the user a list over what comes in tv*.
 
 Command using all flags:
 ```
-python3 scraper.py -c [channel] -t [time] -a
+python3 scraper.py -c [channel] -t [time] -a -d [int]
 ```
 An example with 'real' values:
 ```
-python3 scraper.py -c dr1 -c tv2 -t 20:00 -a
+python3 scraper.py -c dr1 -c tv2 -t 20:00 -a -d 1
 ```
-This prints only the tv-shows that start at 8 pm today on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for that day. 
+This prints only the tv-shows that start at 8 pm today on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for the next day. 
 
 <br/>
 
@@ -25,6 +25,7 @@ This prints only the tv-shows that start at 8 pm today on the channels DR1 and T
 - ```-c [channel]``` or ```--channel [channel]```
 - ```-t [hh:mm]``` or ```--time [hh:mm]```
 - ```-a``` or ```--all```
+- ```-d [int]``` or ```--day [int]```
 
 <br/>
 
@@ -42,6 +43,10 @@ By using the flag "-t" or "--time" you can specify a time for the program to fin
 Time must be formatted like this: "hh:mm".
 
 By using the flag "-a" or "--all" you want to see all the programs running today at the specified channels.
+
+<br/>
+
+By using the flag "-d" or "--day" you specify which day you want to see programs from relative to today (default is today = 0). The range of days you can specify is from yesterday to 6 days ahead, which means the range of integer is to the flag "--day" is negative 1 to 6.
 
 <br/>
 
