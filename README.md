@@ -1,6 +1,6 @@
 # What
 
-A program that gives the user a list over what comes in tv* today.
+A program that gives the user a list over what comes in tv*.
 
 *only danish tv for now
 
