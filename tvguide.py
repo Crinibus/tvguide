@@ -58,7 +58,11 @@ def get_specified_date(relative_date: int):
 
 def get_data():
     date = get_specified_date(args.day)
-    response = requests.get(f'https://tvtid-api.api.tv2.dk/api/tvtid/v1/epg/dayviews/{date}?ch=1&ch=2&ch=3&ch=4&ch=5&ch=6&ch=7&ch=8&ch=14&ch=15&ch=31&ch=37&ch=70&ch=71&ch=77&ch=93&ch=94&ch=118&ch=133&ch=145&ch=153&ch=156&ch=157&ch=185&ch=219&ch=248&ch=10066&ch=10089&ch=10093&ch=10111&ch=10153&ch=10154&ch=10155&ch=12566&ch=12948&ch=15049&ch=2147483561')
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"}
+    cookies = dict(cookies_are='working')
+    response = requests.get(f'https://tvtid-api.api.tv2.dk/api/tvtid/v1/epg/dayviews/{date}?ch=1&ch=2&ch=3&ch=4&ch=5&ch=6&ch=7&ch=8&ch=14&ch=15&ch=31&ch=37&ch=70&ch=71&ch=77&ch=93&ch=94&ch=118&ch=133&ch=145&ch=153&ch=156&ch=157&ch=185&ch=219&ch=248&ch=10066&ch=10089&ch=10093&ch=10111&ch=10153&ch=10154&ch=10155&ch=12566&ch=12948&ch=15049&ch=2147483561',
+                            headers=headers,
+                            cookies=cookies)
 
     return response.json()
 
