@@ -37,6 +37,8 @@ python3 scraper.py -c [channel_1] -c [channel_2]
 ```
 **OBS**: when specifing channels with a space such as "TV2 News", use a dash (-) instead of a space. E.g. "TV2 News" -> "TV2-News"
 
+You can also specify "all" as the first channel to get all channels.
+
 <br/>
 
 By using the flag "-t" or "--time" you can specify a time for the program to find a tv-show that starts at the specified time.<br/>
