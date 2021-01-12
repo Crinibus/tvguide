@@ -69,9 +69,8 @@ def get_data():
 
 
 def get_channels() -> list:
-    """Find all channels with programs, and return the list"""
+    """Get data from all channels"""
     data = get_data()
-    #channels = [channel for channel in data]
     return data
 
 
