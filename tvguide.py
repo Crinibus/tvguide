@@ -51,6 +51,7 @@ def argparse_setup():
 
 
 def get_specified_date(relative_date: int):
+    """Convert relative date to real date, so that if argument 'relative_date' is 1, it get converted to tomorrow"""
     date = datetime.today()
     date += timedelta(days=relative_date)
     date = date.strftime('%Y-%m-%d')
