@@ -21,6 +21,7 @@ def argparse_setup():
         '-t',
         '--time',
         help='the time the program starts. E.g. "20:00". Format is: "hh:mm"',
+        action='append',
         type=str
     )
 
@@ -179,7 +180,7 @@ def print_all_programs(program_dict: dict):
     print()
 
 
-def print_time_program(program_dict: dict, timeStart: str):
+def print_time_program(program_dict: dict, timeStarts: list):
     """Find and print the program at the specified time on the channels defined in program_dict"""
     # Contains the program(s) that start at the specified time
     progsTime = {}
@@ -192,35 +193,37 @@ def print_time_program(program_dict: dict, timeStart: str):
     for channel in program_dict.keys():
         for program_list in program_dict[channel]:
             for program in program_list:
-                # Get time start end end of program in UNIX time from HTML
-                time_data_unix_start = int(program['start'])
-                time_data_unix_end = int(program['stop'])
+                for time in timeStarts:
+                    # Get time start end end of program in UNIX time from HTML
+                    time_data_unix_start = int(program['start'])
+                    time_data_unix_end = int(program['stop'])
 
-                time_start = convert_unix_time(time_data_unix_start, toShow=False)
-                time_end = convert_unix_time(time_data_unix_end, toShow=False)
+                    time_start = convert_unix_time(time_data_unix_start, toShow=False)
+                    time_end = convert_unix_time(time_data_unix_end, toShow=False)
 
-                # Append the program that start at the specified time to dict progsTime
-                if time_start == int(timeStart.replace(':', '')):
-                    progsTime[channel].append(program)
-                # Append the program that is running at the specified time to dict progsTime
-                elif time_start < int(timeStart.replace(':', '')) and time_end > int(timeStart.replace(':', '')):
-                    progsTime[channel].append(program)
+                    # Append the program that start at the specified time to dict progsTime
+                    if time_start == int(time.replace(':', '')):
+                        progsTime[channel].append(program)
+                    # Append the program that is running at the specified time to dict progsTime
+                    elif time_start < int(time.replace(':', '')) and time_end > int(time.replace(':', '')):
+                        progsTime[channel].append(program)
 
     for channel in progsTime.keys():
         if len(progsTime[channel]) > 0:
-            progsTitle = progsTime[channel][0]['title']
-            timeStart_unix = int(progsTime[channel][0]['start'])
-            timeEnd_unix = int(progsTime[channel][0]['stop'])
-            # Times are shifted from UTC to UTC+1 (CET)
-            timeStart = convert_unix_time(timeStart_unix, toShow=True)
-            timeEnd = convert_unix_time(timeEnd_unix, toShow=True)
+            print(f'\n{channel.upper().replace("-", " ")}')
+            for program in progsTime[channel]:
+                progsTitle = program['title']
+                timeStart_unix = int(program['start'])
+                timeEnd_unix = int(program['stop'])
+                # Times are shifted from UTC to UTC+1 (CET)
+                time_start = convert_unix_time(timeStart_unix, toShow=True)
+                time_end = convert_unix_time(timeEnd_unix, toShow=True)
 
-            print(f'{channel.upper().replace("-", " ")}')
-            print(f'{timeStart} - {timeEnd} > {progsTitle}\n')
+                print(f'{time_start} - {time_end} > {progsTitle}')
         else:
             print(f'{channel.upper().replace("-", " ")}')
-            print(f'There is no programs that start at this time: {timeStart}\n')
-
+            print(f'There is no programs that start at this time: {", ".join(timeStarts)}\n')
+    print()
 
 def main(args):
     if not args.channel:
