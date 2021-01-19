@@ -91,7 +91,6 @@ Right now all the channels on "tvtid.tv2.dk" is supported:
 
 ## TODO
 
-- Add support for multiple "--time" flags
 - Add a file with default values (such as channels) that the user can change by defining them with commands
 - Add an argument to search for a specific program, such as "TV-avisen" and then show all the programs (with time)
 - When searching for a specific program or time, then also show the category for the program, perchaps when only using the flag "--verbose" or similar flag name
