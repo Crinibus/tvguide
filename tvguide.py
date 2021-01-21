@@ -225,16 +225,22 @@ def print_time_program(program_dict: dict, timeStarts: list):
             print(f'There is no programs that start at this time: {", ".join(timeStarts)}\n')
     print()
 
+
 def main(args):
     if not args.channel:
         print('No channels chosen: using default channels (dr1, tv2)')
         args.channel = ['dr1', 'tv2']
+
+    if not args.time and not args.all:
+        print('No time specified: using default time (20:00)')
+        args.time = ['20:00']
 
     channel_list = get_channels()
     program_dict = get_programs(channel_list, args.channel)
 
     if args.time:
         print_time_program(program_dict, args.time)
+
     if args.all:
         print_all_programs(program_dict)
 
