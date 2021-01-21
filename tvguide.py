@@ -1,5 +1,4 @@
 import requests
-import json
 import argparse
 from datetime import datetime, timedelta, timezone
 import validate_arguments as validate_args
