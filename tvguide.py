@@ -132,7 +132,7 @@ def get_programs(channel_list: list, user_channels: list) -> dict:
 
             for channel in channel_list:
                 if channel['id'] == str(index):
-                    program_dict[user_channel].append(channel["programs"])
+                    program_dict[user_channel].append(channel['programs'])
     else:
         for channel in channel_index.keys():
             # Check if channel is in channel_indix dict, if not add channel as key
@@ -142,9 +142,10 @@ def get_programs(channel_list: list, user_channels: list) -> dict:
             # Get index from dict
             index = channel_index[channel]
 
-            for channel in channel_list:
-                program_dict[channel].append(channel["programs"])
-    
+            for channel_test in channel_list:
+                if channel_test['id'] == str(index):
+                    program_dict[channel].append(channel_test['programs'])
+
     return program_dict
 
 
