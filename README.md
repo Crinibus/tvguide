@@ -10,11 +10,11 @@ A program that gives the user a list over what comes in tv*.
 
 Command using all flags:
 ```
-python3 scraper.py -c [channel] -t [time] -a -d [int]
+python3 tvguide.py -c [channel] -t [time] -a -d [int]
 ```
 An example with 'real' values:
 ```
-python3 scraper.py -c dr1 -c tv2 -t 20:00 -a -d 1
+python3 tvguide.py -c dr1 -c tv2 -t 20:00 -a -d 1
 ```
 This prints only the tv-shows that start at 8 pm today on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for the next day. 
 
@@ -33,7 +33,7 @@ By using the flag "-c" or "--channel" you specify which channels you want the pr
 You can specify multiple channels just by using the "-c" flag again.<br/>
 For example:
 ```
-python3 scraper.py -c [channel_1] -c [channel_2]
+python3 tvguide.py -c [channel_1] -c [channel_2]
 ```
 **OBS**: when specifing channels with a space such as "TV2 News", use a dash (-) instead of a space. E.g. "TV2 News" -> "TV2-News"
 
@@ -43,6 +43,8 @@ You can also specify "all" as the first channel to get all channels.
 
 By using the flag "-t" or "--time" you can specify a time for the program to find a tv-show that starts at the specified time.<br/>
 Time must be formatted like this: "hh:mm". You can specify multiple times.
+
+<br/>
 
 By using the flag "-a" or "--all" you want to see all the programs running today at the specified channels.
 
