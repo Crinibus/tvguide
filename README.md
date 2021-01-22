@@ -10,11 +10,11 @@ A program that gives the user a list over what comes in tv*.
 
 Command using all flags:
 ```
-python3 tvguide.py -c [channel] -t [time] -a -d [int]
+python3 tvguide.py -c [channel] -t [time] -d [int] -a
 ```
 An example with 'real' values:
 ```
-python3 tvguide.py -c dr1 -c tv2 -t 20:00 -a -d 1
+python3 tvguide.py -c dr1 -c tv2 -t 20:00 -d 1 -a
 ```
 This prints only the tv-shows that start at 8 pm today on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for the next day. 
 
