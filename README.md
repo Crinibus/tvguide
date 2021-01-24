@@ -163,3 +163,4 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 - Add an argument to search for a specific program, such as "TV-avisen" and then show all the programs (with time)
 - When searching for a specific program or time, then also show the category for the program, perchaps when only using the flag "--verbose" or similar flag name
 - Add an argument to search for a specific category, and then show all the programs with that category
+- Add a flag e.g. "--now" (either true or false), when used the script show what program is running right now
