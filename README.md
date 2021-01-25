@@ -41,7 +41,7 @@ You can also specify "all" as the first channel to get all channels.
 
 <br/>
 
-By using the flag "-t" or "--time" you can specify a time for the program to find a tv-show that starts at the specified time.<br/>
+By using the flag "-t" or "--time" you can specify a time for the program to find a tv-show that starts or is running at the specified time.<br/>
 Time must be formatted like this: "hh:mm".<br/>
 You can specify multiple times.
 
