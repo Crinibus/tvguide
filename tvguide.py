@@ -113,13 +113,12 @@ class Program:
 
 def get_data() -> json:
     response = requests.get(
-        get_api_link(args.day),
+        Api.get_api_link(args.day),
         headers=REQUEST_HEADER,
         cookies=REQUEST_COOKIES
     )
 
     return format_data(response.json())
-    #return response.json()
 
 
 def format_data(data: json) -> json:

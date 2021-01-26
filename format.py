@@ -14,10 +14,6 @@ class Format:
         return int(time.replace(":", ""))
 
     @staticmethod
-    def api_link(relative_date: int) -> str:
-        return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
-
-    @staticmethod
     def get_specified_date(relative_date: int) -> str:
         """Convert relative date to real date, so that if argument 'relative_date' is 1, it get converted to tomorrow"""
         date = datetime.today()
@@ -40,9 +36,14 @@ class Format:
             return int(time.strftime('%H%M'))
 
 
-def get_api_link(relative_date: int) -> str:
-    return Format.api_link(relative_date)
-
+class Api:
+    @staticmethod
+    def get_api_link(relative_date: int) -> str:
+        return Api.format_api_link(relative_date)
+    
+    @staticmethod
+    def format_api_link(relative_date: int) -> str:
+        return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
 
 
 class Config:
