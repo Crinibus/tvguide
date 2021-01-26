@@ -29,6 +29,7 @@ This prints only the tv-shows that start at 8 pm the next day on the channels DR
 - ```--category [category]```
 - ```-n``` or ```--now```
 - ```-v``` or ```--verbose```
+- ```--default-channels [channel]```
 
 <br/>
 
