@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from configparser import ConfigParser
 from const import API
 
 
@@ -41,3 +42,10 @@ class Format:
 
 def get_api_link(relative_date: int) -> str:
     return Format.api_link(relative_date)
+
+
+def read_config(file_name: str) -> ConfigParser:
+    """Read user settings in {file_name}.ini"""
+    config = ConfigParser()
+    config.read(file_name)
+    return config

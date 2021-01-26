@@ -3,7 +3,7 @@ import argparse
 from datetime import datetime
 import json # only used for argument and return type indicator
 from const import *
-from format import Format, get_api_link
+from format import *
 
 
 def argparse_setup():
@@ -224,12 +224,20 @@ def print_user_channels_program_currently_running(data_source: dict, user_channe
     print_user_channels_programs_user_times(data_source, user_channels, [time_current])
 
 
+def get_defaults_user_channels():
+    config = read_config('defaults.ini')
+
+    defaultChannels = config['DefaultChannels']['channels']
+
+    return defaultChannels.split(',')
+
+
 def main(args):
     my_data = get_data()
 
     if not args.channel:
-        args.channel = ['dr1', 'tv2']
-        print("No channel(s) chosen: using default channels (dr1, tv2)")
+        args.channel = get_defaults_user_channels()
+        print(f"No channel(s) chosen: using default channels ({', '.join(args.channel)})")
     elif args.channel[0].lower() == 'all':
         args.channel = [channel for channel in my_data.keys()]
 
