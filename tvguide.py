@@ -67,6 +67,13 @@ def argparse_setup():
         action='store_true'
     )
 
+    parser.add_argument(
+        '--default-channels',
+        dest='default_channels',
+        help='change default channels to the chosen channel(s)',
+        nargs='*'
+    )
+
     return parser.parse_args()
 
 
@@ -224,19 +231,15 @@ def print_user_channels_program_currently_running(data_source: dict, user_channe
     print_user_channels_programs_user_times(data_source, user_channels, [time_current])
 
 
-def get_defaults_user_channels():
-    config = read_config('defaults.ini')
-
-    defaultChannels = config['DefaultChannels']['channels']
-
-    return defaultChannels.split(',')
-
-
 def main(args):
     my_data = get_data()
 
+    if args.default_channels:
+        Config.change_defaults_user_channels(args.default_channels)
+        print(f"Changed default channel(s) to: {', '.join(args.default_channels)}")
+
     if not args.channel:
-        args.channel = get_defaults_user_channels()
+        args.channel = Config.get_defaults_user_channels()
         print(f"No channel(s) chosen: using default channels ({', '.join(args.channel)})")
     elif args.channel[0].lower() == 'all':
         args.channel = [channel for channel in my_data.keys()]
@@ -255,9 +258,8 @@ def main(args):
 
 
 if __name__ == "__main__":
-    # my_data = {}
     args = argparse_setup()
-    
+
     try:
         main(args)
     except KeyError:

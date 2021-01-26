@@ -44,8 +44,33 @@ def get_api_link(relative_date: int) -> str:
     return Format.api_link(relative_date)
 
 
-def read_config(file_name: str) -> ConfigParser:
-    """Read user settings in {file_name}.ini"""
-    config = ConfigParser()
-    config.read(file_name)
-    return config
+
+class Config:
+    @staticmethod
+    def read_config(file_name: str) -> ConfigParser:
+        """Read user settings in {file_name}.ini"""
+        config = ConfigParser()
+        config.read(file_name)
+        return config
+
+    @staticmethod
+    def write_config(file_name: str, config: ConfigParser) -> None:
+        """Write user settings in {file_name}.ini"""
+        with open(file_name, 'w') as default_file:
+            config.write(default_file)
+
+    @staticmethod
+    def get_defaults_user_channels() -> list:
+        config = Config.read_config('defaults.ini')
+
+        defaultChannels = config['DefaultChannels']['channels']
+
+        return defaultChannels.split(',')
+
+    @staticmethod
+    def change_defaults_user_channels(new_defaults: list) -> None:
+        config = Config.read_config('defaults.ini')
+
+        config['DefaultChannels']['channels'] = ','.join(new_defaults)
+
+        Config.write_config('defaults.ini', config)
