@@ -166,3 +166,4 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 - Add an argument to search for a specific program, such as "TV-avisen" and then show all the programs (with time)
 - Add documentation to all flags
 - Change section "How to use" to "Examples" or something similar
+- Add docstrings to functions
