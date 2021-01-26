@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from configparser import ConfigParser
-from const import API
+from const import API_LINK
 
 
 class Format:
@@ -15,7 +15,7 @@ class Format:
 
     @staticmethod
     def api_link(relative_date: int) -> str:
-        return API.replace("{date}", Format.get_specified_date(relative_date))
+        return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
 
     @staticmethod
     def get_specified_date(relative_date: int) -> str:
