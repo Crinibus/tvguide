@@ -94,19 +94,8 @@ def print_user_channels_all_programs(data_source: dict, user_channels: list) -> 
 
 
 def print_all_channels_programs_user_times(data_source: dict, user_times: list) -> None:
-    for user_time in user_times:
-        user_time = Format.user_time(user_time)
-
-        for channel in data_source.keys():
-            print(f"\n{Format.channel_name(channel)}:")
-            for program in data_source[channel]:
-                if user_time == program.time_start:
-                    print(program.time_and_title)
-                    break
-                elif program.time_start < user_time and program.time_stop > user_time:
-                    print(program.time_and_title)
-                    break
-        print()
+    all_channels = [channel for channel in data_source.keys()]
+    print_user_channels_programs_user_times_general(data_source, all_channels, user_times)
 
 
 def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list) -> None:
