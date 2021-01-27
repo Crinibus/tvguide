@@ -74,7 +74,7 @@ def print_all_channels_all_programs(data_source: dict) -> None:
         print(f"\n{Format.channel_name(channel)}:")
         for program in data_source[channel]:
             print(program.start_time_and_title)
-        print()
+    print()
 
 
 def print_one_channel_all_programs(data_source: dict, channel_name: str) -> None:
@@ -90,7 +90,7 @@ def print_user_channels_all_programs(data_source: dict, user_channels: list) -> 
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
             print(program.start_time_and_title)
-        print()
+    print()
 
 
 def print_all_channels_programs_user_times(data_source: dict, user_times: list) -> None:
@@ -106,7 +106,7 @@ def print_all_channels_programs_user_times(data_source: dict, user_times: list) 
                 elif program.time_start < user_time and program.time_stop > user_time:
                     print(program.time_and_title)
                     break
-            print()
+        print()
 
 
 def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list) -> None:
@@ -122,7 +122,7 @@ def print_user_channels_programs_user_times(data_source: dict, user_channels: li
                 elif user_time > program.time_start and user_time < program.time_stop:
                     print(program.time_and_title)
                     break
-        print()
+    print()
 
 
 def print_all_channels_all_programs_user_times(data_source: dict, user_times: list) -> None:
@@ -138,7 +138,7 @@ def print_all_channels_all_programs_user_times(data_source: dict, user_times: li
                 elif program.time_start < user_time and program.time_stop > user_time:
                     print(program.time_and_title)
                     break
-        print()
+    print()
 
 
 def print_user_channels_programs_user_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
@@ -154,7 +154,7 @@ def print_user_channels_programs_user_categories(data_source: dict, user_channel
                 elif program.categories == [] and user_cat in ['nyheder']:
                     print(f"{program.time_and_title} ({user_cat.capitalize()})")
                     break
-        print()
+    print()
 
 
 def print_user_channels_program_currently_running(data_source: dict, user_channels: list) -> None:
@@ -173,7 +173,7 @@ def print_user_channels_programs_search(data_source: dict, user_channels: list, 
                 user_search = Format.user_search(user_search)
                 if user_search in program.title.lower():
                     print(program.time_and_title)
-        print()
+    print()
 
 
 def main(args):
