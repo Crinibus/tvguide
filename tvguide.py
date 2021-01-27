@@ -6,7 +6,7 @@ from const import *
 from format import *
 
 
-def argparse_setup():
+def argparse_setup() -> argparse.ArgumentParser.parse_args:
     """Setup and return argparse."""
     parser = argparse.ArgumentParser()
 
@@ -131,7 +131,7 @@ def format_data(data: json) -> json:
     return formatted_data
 
 
-def add_program_to_dict(data_dict: dict, channel_id: str, program: Program):
+def add_program_to_dict(data_dict: dict, channel_id: str, program: Program) -> None:
     channel_name = CHANNEL_NUMBER_INDEX[channel_id]
 
     if channel_name not in data_dict.keys():
@@ -140,7 +140,7 @@ def add_program_to_dict(data_dict: dict, channel_id: str, program: Program):
     data_dict[channel_name].append(program)
 
 
-def print_all_channels_all_programs(data_source: dict):
+def print_all_channels_all_programs(data_source: dict) -> None:
     for channel in data_source.keys():
         print(f"\n{Format.channel_name(channel)}:")
         for program in data_source[channel]:
@@ -148,14 +148,14 @@ def print_all_channels_all_programs(data_source: dict):
         print()
 
 
-def print_one_channel_all_programs(data_source: dict, channel_name: str):
+def print_one_channel_all_programs(data_source: dict, channel_name: str) -> None:
     print(f"\n{Format.channel_name(channel_name)}:")
     for program in data_source[channel_name]:
         print(program.start_time_and_title)
     print()
 
 
-def print_user_channels_all_programs(data_source: dict, user_channels: list):
+def print_user_channels_all_programs(data_source: dict, user_channels: list) -> None:
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
@@ -163,7 +163,7 @@ def print_user_channels_all_programs(data_source: dict, user_channels: list):
         print()
 
 
-def print_all_channels_programs_user_times(data_source: dict, user_times: list):
+def print_all_channels_programs_user_times(data_source: dict, user_times: list) -> None:
     for user_time in user_times:
         user_time = Format.user_time(user_time)
 
@@ -179,7 +179,7 @@ def print_all_channels_programs_user_times(data_source: dict, user_times: list):
             print()
 
 
-def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list):
+def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list) -> None:
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
@@ -194,7 +194,7 @@ def print_user_channels_programs_user_times(data_source: dict, user_channels: li
         print()
 
 
-def print_all_channels_all_programs_user_times(data_source: dict, user_times: list):
+def print_all_channels_all_programs_user_times(data_source: dict, user_times: list) -> None:
     for channel in data_source.keys():
         print(f"\n{Format.channel_name(channel)}:")
         for program in data_source[channel]:
@@ -209,7 +209,7 @@ def print_all_channels_all_programs_user_times(data_source: dict, user_times: li
         print()
 
 
-def print_user_channels_programs_user_categories(data_source: dict, user_channels: list, user_categories: list):
+def print_user_channels_programs_user_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
@@ -224,7 +224,7 @@ def print_user_channels_programs_user_categories(data_source: dict, user_channel
         print()
 
 
-def print_user_channels_program_currently_running(data_source: dict, user_channels: list):
+def print_user_channels_program_currently_running(data_source: dict, user_channels: list) -> None:
     time = datetime.now()
     time_current = time.strftime('%H:%M')
     print_user_channels_programs_user_times(data_source, user_channels, [time_current])
