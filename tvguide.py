@@ -25,7 +25,7 @@ class Program:
     def time_and_title(self) -> str:
         if args.verbose:
             return self.time_and_title_and_category
-        
+
         return f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
 
     @property
@@ -56,7 +56,7 @@ def format_data(data: json) -> json:
     for channel in data:
         for program in channel['programs']:
             add_program_to_dict(formatted_data, channel['id'], Program(program))
-    
+
     return formatted_data
 
 

@@ -34,7 +34,7 @@ class Format:
             return time.strftime('%H:%M')
         else:
             return int(time.strftime('%H%M'))
-    
+
     @staticmethod
     def user_search(search: str) -> str:
         search = search.lower()
@@ -48,7 +48,7 @@ class Api:
     @staticmethod
     def get_link(relative_date: int) -> str:
         return Api.format_link(relative_date)
-    
+
     @staticmethod
     def format_link(relative_date: int) -> str:
         return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
@@ -83,13 +83,13 @@ class Config:
         config['DefaultChannels']['channels'] = ','.join(new_defaults)
 
         Config.write_config('defaults.ini', config)
-    
+
     @staticmethod
     def get_space_seperator() -> str:
         config = Config.read_config('defaults.ini')
 
         return config['Misc']['spaceSeperator']
-    
+
     @staticmethod
     def change_space_seperator(new_space_seperator: str):
         config = Config.read_config('defaults.ini')
