@@ -1,14 +1,14 @@
 import requests
-import argparse
+from argparse import ArgumentParser
 from datetime import datetime
 import json # only used for argument and return type indicator
 from const import *
 from format import *
 
 
-def argparse_setup() -> argparse.ArgumentParser.parse_args:
+def argparse_setup() -> ArgumentParser.parse_args:
     """Setup and return argparse."""
-    parser = argparse.ArgumentParser()
+    parser = ArgumentParser()
 
     parser.add_argument(
         '-c',
