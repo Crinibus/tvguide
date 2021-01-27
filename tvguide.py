@@ -110,17 +110,17 @@ class Program:
 
     @property
     def time_and_title(self) -> str:
-        if not args.verbose:
-            return f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
-        else:
+        if args.verbose:
             return self.time_and_title_and_category
+        
+        return f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
 
     @property
     def start_time_and_title(self) -> str:
-        if not args.verbose:
-            return f"{self.time_start_show} > {self.title}"
-        else:
+        if args.verbose:
             return f"{self.time_start_show} > {self.title} \t ({', '.join(self.categories)})"
+
+        return f"{self.time_start_show} > {self.title}"
 
     @property
     def time_and_title_and_category(self) -> str:
