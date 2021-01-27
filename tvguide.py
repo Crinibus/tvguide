@@ -69,21 +69,6 @@ def add_program_to_dict(data_dict: dict, channel_id: str, program: Program) -> N
     data_dict[channel_name].append(program)
 
 
-# def print_all_channels_all_programs(data_source: dict) -> None:
-#     for channel in data_source.keys():
-#         print(f"\n{Format.channel_name(channel)}:")
-#         for program in data_source[channel]:
-#             print(program.start_time_and_title)
-#     print()
-
-
-# def print_one_channel_all_programs(data_source: dict, channel_name: str) -> None:
-#     print(f"\n{Format.channel_name(channel_name)}:")
-#     for program in data_source[channel_name]:
-#         print(program.start_time_and_title)
-#     print()
-
-
 def print_user_channels_all_programs(data_source: dict, user_channels: list) -> None:
     print(f"\n----- Showing all programs for: {', '.join(user_channels).upper()} -----", end='')
     for user_channel in user_channels:
@@ -91,11 +76,6 @@ def print_user_channels_all_programs(data_source: dict, user_channels: list) -> 
         for program in data_source[user_channel]:
             print(program.start_time_and_title)
     print()
-
-
-# def print_all_channels_programs_user_times(data_source: dict, user_times: list) -> None:
-#     all_channels = [channel for channel in data_source.keys()]
-#     print_user_channels_programs_user_times_general(data_source, all_channels, user_times)
 
 
 def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list) -> None:
@@ -116,22 +96,6 @@ def print_user_channels_programs_user_times_general(data_source: dict, user_chan
                     print(program.time_and_title)
                     break
     print()
-
-
-# def print_all_channels_all_programs_user_times(data_source: dict, user_times: list) -> None:
-#     print(f"\n----- Showing all channels with program that start for times: {', '.join(user_times)} -----", end='')
-#     for channel in data_source.keys():
-#         print(f"\n{Format.channel_name(channel)}:")
-#         for program in data_source[channel]:
-#             for user_time in user_times:
-#                 user_time = Format.user_time(user_time)
-#                 if user_time == program.time_start:
-#                     print(program.time_and_title)
-#                     break
-#                 elif program.time_start < user_time and program.time_stop > user_time:
-#                     print(program.time_and_title)
-#                     break
-#     print()
 
 
 def print_user_channels_programs_user_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
