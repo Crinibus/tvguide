@@ -146,7 +146,7 @@ def main(args):
 
     if not args.channel:
         args.channel = Config.get_defaults_user_channels()
-        print(f"No channel(s) chosen: using default channels ({', '.join(args.channel)})")
+        print(f"No channel(s) chosen: using default channels ({', '.join(args.channel).upper()})")
     elif args.channel[0].lower() == 'all':
         args.channel = [channel for channel in my_data.keys()]
 
