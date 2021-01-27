@@ -29,7 +29,9 @@ This prints only the tv-shows that start at 8 pm the next day on the channels DR
 - ```--category [category]```
 - ```-n``` or ```--now```
 - ```-v``` or ```--verbose```
+- ```-s [search-term]``` or ```--search [search-term]```
 - ```--default-channels [channel]```
+- ```--default-space-seperator [space-seperator]```
 
 <br/>
 
@@ -163,8 +165,6 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 
 ## TODO
 
-- Add a file with default values (such as channels) that the user can change by defining them with commands
-- Add an argument to search for a specific program, such as "TV-avisen" and then show all the programs (with time)
 - Add documentation to all flags
 - Change section "How to use" to "Examples" or something similar
 - Add docstrings to functions

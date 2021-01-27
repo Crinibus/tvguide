@@ -74,6 +74,22 @@ def argparse_setup() -> argparse.ArgumentParser.parse_args:
         nargs='*'
     )
 
+    parser.add_argument(
+        '--default-space-seperator',
+        dest='default_space_seperator',
+        help='change space seperator sign',
+        type=str
+    )
+
+    parser.add_argument(
+        '-s',
+        '--search',
+        dest='search',
+        help='search for programs',
+        action='append',
+        type=str
+    )
+
     return parser.parse_args()
 
 
@@ -230,12 +246,27 @@ def print_user_channels_program_currently_running(data_source: dict, user_channe
     print_user_channels_programs_user_times(data_source, user_channels, [time_current])
 
 
+def print_user_channels_programs_search(data_source: dict, user_channels: list, user_searches: list) -> None:
+    for user_channel in user_channels:
+        print(f"\n{Format.channel_name(user_channel)}:")
+        for program in data_source[user_channel]:
+            for user_search in user_searches:
+                user_search = Format.user_search(user_search)
+                if user_search in program.title.lower():
+                    print(program.time_and_title)
+        print()
+
+
 def main(args):
     my_data = get_data()
 
     if args.default_channels:
         Config.change_defaults_user_channels(args.default_channels)
         print(f"Changed default channel(s) to: {', '.join(args.default_channels)}")
+
+    if args.default_space_seperator:
+        Config.change_space_seperator(args.default_space_seperator)
+        print(f"Changed space seperator to: {args.default_space_seperator}")
 
     if not args.channel:
         args.channel = Config.get_defaults_user_channels()
@@ -251,6 +282,9 @@ def main(args):
 
     if args.category:
         print_user_channels_programs_user_categories(my_data, args.channel, args.category)
+
+    if args.search:
+        print_user_channels_programs_search(my_data, args.channel, args.search)
 
     if args.all:
         print_user_channels_all_programs(my_data, args.channel)

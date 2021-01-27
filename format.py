@@ -34,6 +34,14 @@ class Format:
             return time.strftime('%H:%M')
         else:
             return int(time.strftime('%H%M'))
+    
+    @staticmethod
+    def user_search(search: str) -> str:
+        search = search.lower()
+
+        spaceSeperator  = Config.get_space_seperator()
+
+        return search.replace(spaceSeperator, ' ')
 
 
 class Api:
@@ -73,5 +81,19 @@ class Config:
         config = Config.read_config('defaults.ini')
 
         config['DefaultChannels']['channels'] = ','.join(new_defaults)
+
+        Config.write_config('defaults.ini', config)
+    
+    @staticmethod
+    def get_space_seperator() -> str:
+        config = Config.read_config('defaults.ini')
+
+        return config['Misc']['spaceSeperator']
+    
+    @staticmethod
+    def change_space_seperator(new_space_seperator: str):
+        config = Config.read_config('defaults.ini')
+
+        config['Misc']['spaceSeperator'] = new_space_seperator
 
         Config.write_config('defaults.ini', config)
