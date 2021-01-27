@@ -42,7 +42,7 @@ class Program:
 
 def get_data() -> json:
     response = requests.get(
-        Api.get_api_link(args.day),
+        Api.get_link(args.day),
         headers=REQUEST_HEADER,
         cookies=REQUEST_COOKIES
     )

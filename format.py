@@ -46,11 +46,11 @@ class Format:
 
 class Api:
     @staticmethod
-    def get_api_link(relative_date: int) -> str:
-        return Api.format_api_link(relative_date)
+    def get_link(relative_date: int) -> str:
+        return Api.format_link(relative_date)
     
     @staticmethod
-    def format_api_link(relative_date: int) -> str:
+    def format_link(relative_date: int) -> str:
         return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
 
 
