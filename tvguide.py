@@ -85,6 +85,7 @@ def print_one_channel_all_programs(data_source: dict, channel_name: str) -> None
 
 
 def print_user_channels_all_programs(data_source: dict, user_channels: list) -> None:
+    print(f"\n----- Showing all programs for: {', '.join(user_channels).upper()} -----", end='')
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
@@ -109,6 +110,7 @@ def print_all_channels_programs_user_times(data_source: dict, user_times: list) 
 
 
 def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list) -> None:
+    print(f"\n----- Showing programs that start at: {', '.join(user_times)} for: {', '.join(user_channels).upper()} -----", end='')
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
@@ -124,6 +126,7 @@ def print_user_channels_programs_user_times(data_source: dict, user_channels: li
 
 
 def print_all_channels_all_programs_user_times(data_source: dict, user_times: list) -> None:
+    print(f"\n----- Showing all channels with program that start for times: {', '.join(user_times)} -----", end='')
     for channel in data_source.keys():
         print(f"\n{Format.channel_name(channel)}:")
         for program in data_source[channel]:
@@ -139,6 +142,7 @@ def print_all_channels_all_programs_user_times(data_source: dict, user_times: li
 
 
 def print_user_channels_programs_user_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
+    print(f"\n----- Searching for categories: {', '.join(user_categories)} -----", end='')
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
@@ -154,12 +158,14 @@ def print_user_channels_programs_user_categories(data_source: dict, user_channel
 
 
 def print_user_channels_program_currently_running(data_source: dict, user_channels: list) -> None:
+    print(f"\n----- Showing currently running programs for: {', '.join(user_channels).upper()} -----", end='')
     time = datetime.now()
     time_current = time.strftime('%H:%M')
     print_user_channels_programs_user_times(data_source, user_channels, [time_current])
 
 
 def print_user_channels_programs_search(data_source: dict, user_channels: list, user_searches: list) -> None:
+    print(f"\n----- Searching for keywords: {', '.join(user_searches)} -----", end='')
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
