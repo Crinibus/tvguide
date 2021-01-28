@@ -37,11 +37,25 @@ class Program:
 
     @property
     def time_and_title_and_category(self) -> str:
-        return f"{self.time_start_show} - {self.time_stop_show} > {self.title.ljust(37)} ({', '.join(self.categories)})"
+        time_and_title = f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
+        
+        if len(time_and_title) > 45:
+            time_and_title_cut = f"{time_and_title[:45]}..."
+        else:
+            time_and_title_cut = time_and_title
+
+        return f"{time_and_title_cut.ljust(50)} ({', '.join(self.categories)})"
 
     @property
     def start_time_and_title_and_category(self) -> str:
-        return f"{self.time_start_show} > {self.title.ljust(45)} ({', '.join(self.categories)})"
+        time_and_title = f"{self.time_start_show} > {self.title}"
+
+        if len(time_and_title) > 45:
+            time_and_title_cut = f"{time_and_title[:45]}..."
+        else:
+            time_and_title_cut = time_and_title
+
+        return f"{time_and_title_cut.ljust(50)} ({', '.join(self.categories)})"
 
     def __str__(self) -> str:
         return self.time_and_title
