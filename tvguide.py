@@ -37,11 +37,11 @@ class Program:
 
     @property
     def time_and_title_and_category(self) -> str:
-        return f"{self.time_start_show} - {self.time_stop_show} > {self.title.ljust(40)} ({', '.join(self.categories)})"
+        return f"{self.time_start_show} - {self.time_stop_show} > {self.title.ljust(37)} ({', '.join(self.categories)})"
 
     @property
     def start_time_and_title_and_category(self) -> str:
-        return f"{self.time_start_show} > {self.title.ljust(40)} ({', '.join(self.categories)})"
+        return f"{self.time_start_show} > {self.title.ljust(45)} ({', '.join(self.categories)})"
 
     def __str__(self) -> str:
         return self.time_and_title
