@@ -21,7 +21,7 @@ Another example:
 ```
 python3 tvguide.py -c dr1 -c tv2 -t 20:00 -d 1
 ```
-This prints only the tv-shows that start at 8 pm the next day on the channels DR1 and TV2.
+This prints only the tv-shows that start or is running at 8 pm the next day on the channels DR1 and TV2.
 
 <br/>
 
