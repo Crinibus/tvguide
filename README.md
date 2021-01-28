@@ -1,4 +1,4 @@
-# What
+# What <a name="what"></a>
 
 A program that gives the user a list over what comes in tv*.
 
@@ -6,7 +6,7 @@ A program that gives the user a list over what comes in tv*.
 
 <br/>
 
-# How to use
+# How to use <a name="how-to-use"></a>
 
 Command using all flags:
 ```
@@ -16,11 +16,12 @@ An example with 'real' values:
 ```
 python3 tvguide.py -c dr1 -c tv2 -t 20:00 -d 1 -a
 ```
-This prints only the tv-shows that start at 8 pm the next day on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for the next day. 
+This prints only the tv-shows that start at 8 pm the next day on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for the next day.
 
 <br/>
 
-# Available flags
+
+# Available flags <a name="available-flags"></a>
 
 - ```-c [channel]``` or ```--channel [channel]```
 - ```-t [hh:mm]``` or ```--time [hh:mm]```
@@ -35,8 +36,13 @@ This prints only the tv-shows that start at 8 pm the next day on the channels DR
 
 <br/>
 
-By using the flag "-c" or "--channel" you specify which channels you want the program to show tv-shows from. Replace "[channel]" with wanted channel, e.g. "dr1". <br/>
-You can specify multiple channels just by using the "-c" flag again.<br/>
+
+## --channel <a name="--channel"></a>
+
+By using the flag ```-c``` or ```--channel``` you specify which channels you want the program to show tv-shows from. Replace "[channel]" with wanted channel, e.g. "dr1". <br/>
+You can specify multiple channels just by using the ```-c``` flag again.<br/>
+If no channel(s) is chosen, the default channels is used. You can change the default channels as described [here](#--default-channels)
+
 For example:
 ```
 python3 tvguide.py -c [channel_1] -c [channel_2]
@@ -45,21 +51,151 @@ python3 tvguide.py -c [channel_1] -c [channel_2]
 
 You can also specify "all" as the first channel to get all channels.
 
+Examples:<br/>
+```
+python3 tvguide.py -c dr1 -c tv2 --all
+```
+This shows all the programs that run on DR1 and TV2 for today.
+
 <br/>
 
-By using the flag "-t" or "--time" you can specify a time for the program to find a tv-show that starts or is running at the specified time.<br/>
+```
+python3 tvguide.py -c all --all
+```
+This shows all the programs that run on all channels for today.
+
+<br/>
+
+
+## --time <a name="--time"></a>
+
+By using the flag ```-t``` or ```--time``` you can specify a time for the program to find a tv-show that starts or is running at the specified time.<br/>
 Time must be formatted like this: "hh:mm".<br/>
 You can specify multiple times.
 
-<br/>
-
-By using the flag "-a" or "--all" you want to see all the programs running today at the specified channels.
-
-<br/>
-
-By using the flag "-d" or "--day" you specify which day you want to see programs from relative to today (default is today = 0). The range of days you can specify is from yesterday to 6 days ahead, which means the range of integer is to the flag "--day" is negative 1 to 6.
+Example: <br/>
+```
+python3 tvguide.py -t 19:30 -t 20:00
+```
+This shows the programs that start or is running at 7.30 pm and 8 pm today for the default channels.
 
 <br/>
+
+
+## --day <a name="--day"></a>
+
+By using the flag ```-d``` or ```--day``` you specify which day you want to see programs from relative to today (default is today = 0). The range of days you can specify is from yesterday to 6 days ahead, which means the range of integer is to the flag ```--day``` is negative 1 to 6.
+
+Example: <br/>
+```
+python3 tvguide.py -t 19:30 --day 1
+```
+This shows the programs that either starts or is running at 7.30 pm tomorrow on the default channels.
+
+<br/>
+
+
+## --all <a name="--all"></a>
+
+By using the flag ```-a``` or ```--all``` you want to see all the programs running today at the specified channels.
+
+Example: <br/>
+```
+python3 tvguide.py --all
+```
+This shows all programs for today that runs on the default channels.
+
+<br/>
+
+
+## --category <a name="--category"></a>
+
+By using the flag ```--category``` you search after programs that have the specified categories.
+
+Examples: <br/>
+```
+python3 tvguide.py --category film
+```
+This shows all the programs that have the category "film" on the default channels for today.
+
+<br/>
+
+```
+python3 tvguide.py --category film --category drama
+```
+This shows all the programs that have either the category "film" or "drama" on the default channels for today.
+
+<br/>
+
+
+## --now <a name="--now"></a>
+
+
+Example:
+```
+python3 tvguide.py --now
+```
+This shows what programs are currently running on the default channels.
+
+<br/>
+
+
+## --verbose <a name="--verbose"></a>
+
+
+Example:
+```
+python3 tvguide.py --all --verbose
+```
+This shows all the programs with categories for the default channels for today.
+
+<br/>
+
+
+## --search <a name="--search"></a>
+
+
+Examples:
+```
+python3 tvguide.py --search avis
+```
+This shows all the programs on the default channels for today that have the word "avis" in the title.
+
+<br/>
+
+```
+python3 tvguide.py --search avis --search vejr
+```
+This shows all the programs on the default channels for today that have either the words "avis" or "vejr" in the title.
+
+<br/>
+
+
+## --default-channels <a name="--default-channels"></a>
+
+
+Example:
+```
+python3 tvguide.py --default-channels dr1 tv2 canal-9
+```
+This changes the default channels to "DR1", "TV2" and "CANAL 9".
+
+<br/>
+
+
+## --default-space-seperator <a name="--default-space-seperator"></a>
+
+
+Example:
+```
+python3 tvguide.py --default-space-seperator -
+```
+This changes the default space seperator to the sign "-".
+
+<br/>
+
+
+# Supported channels <a name="supported-channels"></a>
 
 Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported:
 - dr1
@@ -162,6 +298,7 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 - discovery-science
 
 <br/>
+
 
 ## TODO
 
