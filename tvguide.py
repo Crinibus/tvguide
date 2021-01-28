@@ -31,13 +31,17 @@ class Program:
     @property
     def start_time_and_title(self) -> str:
         if args.verbose:
-            return f"{self.time_start_show} > {self.title} \t ({', '.join(self.categories)})"
+            return self.start_time_and_title_and_category
 
         return f"{self.time_start_show} > {self.title}"
 
     @property
     def time_and_title_and_category(self) -> str:
-        return f"{self.time_start_show} - {self.time_stop_show} > {self.title} \t ({', '.join(self.categories)})"
+        return f"{self.time_start_show} - {self.time_stop_show} > {self.title.ljust(40)} ({', '.join(self.categories)})"
+
+    @property
+    def start_time_and_title_and_category(self) -> str:
+        return f"{self.time_start_show} > {self.title.ljust(40)} ({', '.join(self.categories)})"
 
     def __str__(self) -> str:
         return self.time_and_title
