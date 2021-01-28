@@ -128,7 +128,7 @@ def print_user_channels_program_currently_running(data_source: dict, user_channe
 
 
 def print_user_channels_programs_search(data_source: dict, user_channels: list, user_searches: list) -> None:
-    print(f"\n----- Searching for keywords: {', '.join(user_searches)} -----", end='')
+    print(f"\n----- Searching for keywords: {Format.user_search(', '.join(user_searches))} -----", end='')
     for user_channel in user_channels:
         print(f"\n{Format.channel_name(user_channel)}:")
         for program in data_source[user_channel]:
