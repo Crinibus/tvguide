@@ -39,6 +39,12 @@ class Program:
     def time_and_title_and_category(self) -> str:
         return f"{self.time_start_show} - {self.time_stop_show} > {self.title} \t ({', '.join(self.categories)})"
 
+    def __str__(self) -> str:
+        return self.time_and_title
+
+    def __repr__(self) -> str:
+        return f"Program(program_info={self.info})"
+
 
 def get_data() -> json:
     response = requests.get(
