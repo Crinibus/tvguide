@@ -6,17 +6,22 @@ A program that gives the user a list over what comes in tv*.
 
 <br/>
 
+
 # How to use <a name="how-to-use"></a>
 
-Command using all flags:
+An example on how to use this program:
 ```
-python3 tvguide.py -c [channel] -t [time] -d [int] -a
+python3 tvguide.py -c dr1 -c tv2 --all
 ```
-An example with 'real' values:
+This prints all the programs that run today for the channels DR1 and TV2.
+
+<br/>
+
+Another example:
 ```
-python3 tvguide.py -c dr1 -c tv2 -t 20:00 -d 1 -a
+python3 tvguide.py -c dr1 -c tv2 -t 20:00 -d 1
 ```
-This prints only the tv-shows that start at 8 pm the next day on the channels DR1 and TV2 and there after prints all the shows on DR1 and TV2 for the next day.
+This prints only the tv-shows that start at 8 pm the next day on the channels DR1 and TV2.
 
 <br/>
 
@@ -303,5 +308,4 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 ## TODO
 
 - Add documentation to all flags
-- Change section "How to use" to "Examples" or something similar
 - Add docstrings to functions
