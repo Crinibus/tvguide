@@ -98,9 +98,23 @@ class Config:
         return config['Misc']['spaceSeperator']
 
     @staticmethod
-    def change_space_seperator(new_space_seperator: str):
+    def change_space_seperator(new_space_seperator: str) -> None:
         config = Config.read_config('defaults.ini')
 
         config['Misc']['spaceSeperator'] = new_space_seperator
+
+        Config.write_config('defaults.ini', config)
+
+    @staticmethod
+    def get_justify_length() -> int:
+        config = Config.read_config('defaults.ini')
+
+        return int(config['Misc']['justifyLength'])
+
+    @staticmethod
+    def change_justify_length(new_length: int):
+        config = Config.read_config('defaults.ini')
+
+        config['Misc']['justifyLength'] = new_length
 
         Config.write_config('defaults.ini', config)

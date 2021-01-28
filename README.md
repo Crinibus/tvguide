@@ -38,6 +38,7 @@ This prints only the tv-shows that start or is running at 8 pm the next day on t
 - ```-s [search-term]``` or ```--search [search-term]```
 - ```--default-channels [channel]```
 - ```--default-space-seperator [space-seperator]```
+- ```--justify-length [int]```
 
 <br/>
 
@@ -196,6 +197,18 @@ Example:
 python3 tvguide.py --default-space-seperator -
 ```
 This changes the default space seperator to the sign "-".
+
+<br/>
+
+
+## --justify-length <a name="--justify-length"></a>
+
+
+Example:
+```
+python3 tvguide.py --justify-length 45
+```
+This changes the justify length to 45.
 
 <br/>
 

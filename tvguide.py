@@ -38,24 +38,26 @@ class Program:
     @property
     def time_and_title_and_category(self) -> str:
         time_and_title = f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
-        
-        if len(time_and_title) > 45:
-            time_and_title_cut = f"{time_and_title[:45]}..."
+        justify_length = Config.get_justify_length()
+
+        if len(time_and_title) > justify_length:
+            time_and_title_cut = f"{time_and_title[:justify_length]}..."
         else:
             time_and_title_cut = time_and_title
 
-        return f"{time_and_title_cut.ljust(50)} ({', '.join(self.categories)})"
+        return f"{time_and_title_cut.ljust(justify_length + 5)} ({', '.join(self.categories)})"
 
     @property
     def start_time_and_title_and_category(self) -> str:
         time_and_title = f"{self.time_start_show} > {self.title}"
+        justify_length = Config.get_justify_length()
 
-        if len(time_and_title) > 45:
-            time_and_title_cut = f"{time_and_title[:45]}..."
+        if len(time_and_title) > justify_length:
+            time_and_title_cut = f"{time_and_title[:justify_length]}..."
         else:
             time_and_title_cut = time_and_title
 
-        return f"{time_and_title_cut.ljust(50)} ({', '.join(self.categories)})"
+        return f"{time_and_title_cut.ljust(justify_length + 5)} ({', '.join(self.categories)})"
 
     def __str__(self) -> str:
         return self.time_and_title
@@ -167,6 +169,10 @@ def main(args):
     if args.default_space_seperator:
         Config.change_space_seperator(args.default_space_seperator)
         print(f"Changed space seperator to: {args.default_space_seperator}")
+
+    if args.justify_length:
+        Config.change_justify_length(args.justify_length)
+        print(f"Changed justify length to: {args.justify_length}")
 
     if not args.channel:
         args.channel = Config.get_defaults_user_channels()
