@@ -80,7 +80,7 @@ def argparse_setup() -> ArgumentParser.parse_args:
         '--justify-length',
         dest='justify_length',
         help='change justify length',
-        type=int
+        type=str
     )
 
     parser.add_argument(
