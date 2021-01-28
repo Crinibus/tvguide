@@ -321,4 +321,3 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 ## TODO
 
 - Add documentation to all flags
-- Add docstrings to functions
