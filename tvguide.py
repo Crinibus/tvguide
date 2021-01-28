@@ -15,7 +15,7 @@ class Program:
         self.time_start_unix = self.info['start']
         self.time_stop_unix = self.info['stop']
         self.time_start = Format.convert_unix_time(self.time_start_unix, toShow=False)
-        self.time_stop = Format.convert_unix_time(self.time_stop_unix, toShow=False)
+        self.time_stop = Format.program_time_stop(time_start=self.time_start, time_stop=Format.convert_unix_time(self.time_stop_unix, toShow=False))
         self.time_start_show = Format.convert_unix_time(self.time_start_unix, toShow=True)
         self.time_stop_show = Format.convert_unix_time(self.time_stop_unix, toShow=True)
         self.title = self.info['title']
