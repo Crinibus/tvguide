@@ -42,6 +42,13 @@ class Format:
         spaceSeperator  = Config.get_space_seperator()
 
         return search.replace(spaceSeperator, ' ')
+    
+    @staticmethod
+    def program_time_stop(time_start: int, time_stop: int) -> int:
+        if time_start > time_stop:
+            return 2400 + time_stop
+
+        return time_stop
 
 
 class Api:
