@@ -25,6 +25,14 @@ This prints only the tv-shows that start or is running at 8 pm the next day on t
 
 <br/>
 
+Another another example:
+```
+python3 tvguide.py --now --verbose
+```
+This prints the programs (with categories) that is currently running on the default channels.
+
+<br/>
+
 
 # Available flags <a name="available-flags"></a>
 
