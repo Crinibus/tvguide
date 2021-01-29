@@ -1,13 +1,12 @@
 import requests
 from datetime import datetime
-import json # only used for argument and return type indicator
 from const import *
 from format import *
 from argument import argparse_setup
 
 
 class Program:
-    def __init__(self, program_info: json):
+    def __init__(self, program_info: dict):
         self.info = program_info
         self.format_info()
 
@@ -66,7 +65,7 @@ class Program:
         return f"Program(program_info={self.info})"
 
 
-def get_data() -> json:
+def get_data() -> dict:
     """Get formatted data from API"""
     response = requests.get(
         Api.get_link(args.day),
@@ -77,7 +76,7 @@ def get_data() -> json:
     return format_data(response.json())
 
 
-def format_data(data: json) -> json:
+def format_data(data: dict) -> dict:
     """Format data from API"""
     formatted_data = {}
 
