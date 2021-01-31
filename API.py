@@ -1,15 +1,12 @@
 import requests
 from const import API_LINK, REQUEST_HEADER, REQUEST_COOKIES
 from format import Format
+from Channel import Channel
 
 
 class API:
     @staticmethod
     def get_link(relative_date: int) -> str:
-        return API.format_link(relative_date)
-
-    @staticmethod
-    def format_link(relative_date: int) -> str:
         return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
 
     @staticmethod
@@ -22,3 +19,13 @@ class API:
         )
 
         return response.json()
+
+    @staticmethod
+    def format_data(api_data: dict, verbose: bool) -> dict:
+        formatted_data = {}
+
+        for channel in api_data:
+            temp_channel = Channel(channel, verbose)
+            formatted_data.update({temp_channel.name: temp_channel})
+
+        return formatted_data

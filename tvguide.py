@@ -6,14 +6,7 @@ from API import API
 from Config import Config
 
 
-def format_api_data(api_data: dict, verbose: bool) -> dict:
-    formatted_data = {}
 
-    for channel in api_data:
-        temp_channel = Channel(channel, verbose)
-        formatted_data.update({temp_channel.name: temp_channel})
-    
-    return formatted_data
 
 
 def print_currently_running(data_source: dict, user_channels: list) -> None:
@@ -49,7 +42,7 @@ def print_program_all(data_source: dict, user_channels: list) -> None:
 def main(args):
     api_data = API.get_data(args.day)
 
-    my_data = format_api_data(api_data, args.verbose)
+    my_data = API.format_data(api_data, args.verbose)
 
     if args.default_channels:
         Config.change_defaults_user_channels(args.default_channels)
