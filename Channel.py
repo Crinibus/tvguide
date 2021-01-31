@@ -3,6 +3,7 @@ from Program import Program
 from const import CHANNEL_NUMBER_INDEX
 from format import Format
 
+
 class Channel:
     def __init__(self, channel_info: dict, verbose: bool = False) -> None:
         self.verbose = verbose
