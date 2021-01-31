@@ -330,3 +330,4 @@ Right now all the channels on [tvtid.tv2.dk](https://tvtid.tv2.dk/) is supported
 
 - Add documentation to all flags
 - Use datetime.timezone to convert UNIX-time to users timezone, instead of hardcoded convert to UTC+1
+- Print the date the data is from to the user
