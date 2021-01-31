@@ -1,12 +1,7 @@
-from const import *
 from format import Format
 from argument import argparse_setup
-from Channel import Channel
 from API import API
 from Config import Config
-
-
-
 
 
 def print_currently_running(data_source: dict, user_channels: list) -> None:
