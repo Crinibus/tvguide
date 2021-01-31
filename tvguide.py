@@ -1,178 +1,59 @@
-import requests
-from datetime import datetime
 from const import *
-from format import *
+from format import Format
 from argument import argparse_setup
+from Channel import Channel
+from API import API
+from Config import Config
 
 
-class Program:
-    def __init__(self, program_info: dict):
-        self.info = program_info
-        self.format_info()
-
-    def format_info(self):
-        self.time_start_unix = self.info['start']
-        self.time_stop_unix = self.info['stop']
-        self.time_start = Format.convert_unix_time(self.time_start_unix, toShow=False)
-        self.time_stop = Format.program_time_stop(time_start=self.time_start, time_stop=Format.convert_unix_time(self.time_stop_unix, toShow=False))
-        self.time_start_show = Format.convert_unix_time(self.time_start_unix, toShow=True)
-        self.time_stop_show = Format.convert_unix_time(self.time_stop_unix, toShow=True)
-        self.title = self.info['title']
-        self.categories = [cat.lower() for cat in self.info['categories']]
-
-    @property
-    def time_and_title(self) -> str:
-        if args.verbose:
-            return self.time_and_title_and_category
-
-        return f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
-
-    @property
-    def start_time_and_title(self) -> str:
-        if args.verbose:
-            return self.start_time_and_title_and_category
-
-        return f"{self.time_start_show} > {self.title}"
-
-    @property
-    def time_and_title_and_category(self) -> str:
-        time_and_title = f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
-        justify_length = Config.get_justify_length()
-
-        if len(time_and_title) > justify_length:
-            time_and_title_cut = f"{time_and_title[:justify_length]}..."
-        else:
-            time_and_title_cut = time_and_title
-
-        return f"{time_and_title_cut.ljust(justify_length + 5)} ({', '.join(self.categories)})"
-
-    @property
-    def start_time_and_title_and_category(self) -> str:
-        time_and_title = f"{self.time_start_show} > {self.title}"
-        justify_length = Config.get_justify_length()
-
-        if len(time_and_title) > justify_length:
-            time_and_title_cut = f"{time_and_title[:justify_length]}..."
-        else:
-            time_and_title_cut = time_and_title
-
-        return f"{time_and_title_cut.ljust(justify_length + 5)} ({', '.join(self.categories)})"
-
-    def __str__(self) -> str:
-        return self.time_and_title
-
-    def __repr__(self) -> str:
-        return f"Program(program_info={self.info})"
-
-
-def get_data() -> dict:
-    """Get formatted data from API"""
-    response = requests.get(
-        Api.get_link(args.day),
-        headers=REQUEST_HEADER,
-        cookies=REQUEST_COOKIES
-    )
-
-    return format_data(response.json())
-
-
-def format_data(data: dict) -> dict:
-    """Format data from API"""
+def format_api_data(api_data: dict, verbose: bool) -> dict:
     formatted_data = {}
 
-    for channel in data:
-        for program in channel['programs']:
-            add_program_to_dict(formatted_data, channel['id'], Program(program))
-
+    for channel in api_data:
+        temp_channel = Channel(channel, verbose)
+        formatted_data.update({temp_channel.name: temp_channel})
+    
     return formatted_data
 
 
-def add_program_to_dict(data_dict: dict, channel_id: str, program: Program) -> None:
-    """Add a program to data_dict"""
-    channel_name = CHANNEL_NUMBER_INDEX[channel_id]
-
-    if channel_name not in data_dict.keys():
-        data_dict.update({channel_name: []})
-
-    data_dict[channel_name].append(program)
-
-
-def print_user_channels_all_programs(data_source: dict, user_channels: list) -> None:
-    """Print all programs from user_channels"""
-    print(f"\n----- Showing all programs for: {', '.join(user_channels).upper()} -----", end='')
-    for user_channel in user_channels:
-        print(f"\n{Format.channel_name(user_channel)}:")
-        for program in data_source[user_channel]:
-            print(program.start_time_and_title)
-    print()
-
-
-def print_user_channels_programs_user_times(data_source: dict, user_channels: list, user_times: list) -> None:
-    """Print programs that starts or runs at times in user_times from channels in user_channels"""
-    print(f"\n----- Showing programs that start at: {', '.join(user_times)} for: {', '.join(user_channels).upper()} -----", end='')
-    print_user_channels_programs_user_times_general(data_source, user_channels, user_times)
-
-
-def print_user_channels_programs_user_times_general(data_source: dict, user_channels: list, user_times: list) -> None:
-    """(General) Print programs that starts or runs at times in user_times from channels in user_channels """
-    for user_channel in user_channels:
-        print(f"\n{Format.channel_name(user_channel)}:")
-        for program in data_source[user_channel]:
-            for user_time in user_times:
-                user_time = Format.user_time(user_time)
-                if user_time == program.time_start:
-                    print(program.time_and_title)
-                    break
-                elif user_time > program.time_start and user_time < program.time_stop:
-                    print(program.time_and_title)
-                    break
-    print()
-
-
-def print_user_channels_programs_user_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
-    """Print programs that has one or more categories in user_categories from channels in user_channels"""
-    print(f"\n----- Searching for categories: {', '.join(user_categories)} -----", end='')
-    for user_channel in user_channels:
-        print(f"\n{Format.channel_name(user_channel)}:")
-        for program in data_source[user_channel]:
-            for user_cat in user_categories:
-                user_cat = user_cat.lower()
-                if user_cat in program.categories:
-                    print(f"{program.time_and_title} ({user_cat.capitalize()})")
-                    break
-                elif program.categories == [] and user_cat in ['nyheder']:
-                    print(f"{program.time_and_title} ({user_cat.capitalize()})")
-                    break
-    print()
-
-
-def print_user_channels_program_currently_running(data_source: dict, user_channels: list) -> None:
-    """Print programs that is currently running from channels in user_channels"""
+def print_currently_running(data_source: dict, user_channels: list) -> None:
     print(f"\n----- Showing currently running programs for: {', '.join(user_channels).upper()} -----", end='')
-    time = datetime.now()
-    time_current = time.strftime('%H:%M')
-    print_user_channels_programs_user_times_general(data_source, user_channels, [time_current])
+    for channel in user_channels:
+        data_source[channel].print_currently_running()
 
 
-def print_user_channels_programs_search(data_source: dict, user_channels: list, user_searches: list) -> None:
-    """Print programs that has words in user_searches in it's title from channels in user_channels"""
+def print_program_times(data_source: dict, user_channels: list, user_times: list) -> None:
+    print(f"\n----- Showing programs that start at: {', '.join(user_times)} for: {', '.join(user_channels).upper()} -----", end='')
+    for channel in user_channels:
+        data_source[channel].print_times(user_times)
+
+
+def print_program_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
+    print(f"\n----- Searching for categories: {', '.join(user_categories)} -----", end='')
+    for channel in user_channels:
+        data_source[channel].print_categories(user_categories)
+
+
+def print_program_searches(data_source: dict, user_channels: list, user_searches: list) -> None:
     print(f"\n----- Searching for keywords: {Format.user_search(', '.join(user_searches))} -----", end='')
-    for user_channel in user_channels:
-        print(f"\n{Format.channel_name(user_channel)}:")
-        for program in data_source[user_channel]:
-            for user_search in user_searches:
-                user_search = Format.user_search(user_search)
-                if user_search in program.title.lower():
-                    print(program.time_and_title)
-    print()
+    for channel in user_channels:
+        data_source[channel].print_searches(user_searches)
+
+
+def print_program_all(data_source: dict, user_channels: list) -> None:
+    print(f"\n----- Showing all programs for: {', '.join(user_channels).upper()} -----", end='')
+    for channel in user_channels:
+        data_source[channel].print_all_programs()
 
 
 def main(args):
-    my_data = get_data()
+    api_data = API.get_data(args.day)
+
+    my_data = format_api_data(api_data, args.verbose)
 
     if args.default_channels:
         Config.change_defaults_user_channels(args.default_channels)
-        print(f"Changed default channel(s) to: {', '.join(args.default_channels)}")
+        print(f"Changed default channel(s) to: {', '.join(args.default_channels).upper()}")
 
     if args.default_space_seperator:
         Config.change_space_seperator(args.default_space_seperator)
@@ -189,19 +70,19 @@ def main(args):
         args.channel = [channel for channel in my_data.keys()]
 
     if args.now:
-        print_user_channels_program_currently_running(my_data, args.channel)
+        print_currently_running(my_data, args.channel)
 
     if args.time:
-        print_user_channels_programs_user_times(my_data, args.channel, args.time)
+        print_program_times(my_data, args.channel, args.time)
 
     if args.category:
-        print_user_channels_programs_user_categories(my_data, args.channel, args.category)
+        print_program_categories(my_data, args.channel, args.category)
 
     if args.search:
-        print_user_channels_programs_search(my_data, args.channel, args.search)
+        print_program_searches(my_data, args.channel, args.search)
 
     if args.all:
-        print_user_channels_all_programs(my_data, args.channel)
+        print_program_all(my_data, args.channel)
 
 
 if __name__ == "__main__":

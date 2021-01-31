@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from configparser import ConfigParser
-from const import API_LINK
+from Config import Config
 
 
 class Format:
@@ -49,72 +48,3 @@ class Format:
             return 2400 + time_stop
 
         return time_stop
-
-
-class Api:
-    @staticmethod
-    def get_link(relative_date: int) -> str:
-        return Api.format_link(relative_date)
-
-    @staticmethod
-    def format_link(relative_date: int) -> str:
-        return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
-
-
-class Config:
-    @staticmethod
-    def read_config(file_name: str) -> ConfigParser:
-        """Read user settings in {file_name}.ini"""
-        config = ConfigParser()
-        config.read(file_name)
-        return config
-
-    @staticmethod
-    def write_config(file_name: str, config: ConfigParser) -> None:
-        """Write user settings in {file_name}.ini"""
-        with open(file_name, 'w') as default_file:
-            config.write(default_file)
-
-    @staticmethod
-    def get_defaults_user_channels() -> list:
-        config = Config.read_config('defaults.ini')
-
-        defaultChannels = config['DefaultChannels']['channels']
-
-        return defaultChannels.split(',')
-
-    @staticmethod
-    def change_defaults_user_channels(new_defaults: list) -> None:
-        config = Config.read_config('defaults.ini')
-
-        config['DefaultChannels']['channels'] = ','.join(new_defaults)
-
-        Config.write_config('defaults.ini', config)
-
-    @staticmethod
-    def get_space_seperator() -> str:
-        config = Config.read_config('defaults.ini')
-
-        return config['Misc']['spaceSeperator']
-
-    @staticmethod
-    def change_space_seperator(new_space_seperator: str) -> None:
-        config = Config.read_config('defaults.ini')
-
-        config['Misc']['spaceSeperator'] = new_space_seperator
-
-        Config.write_config('defaults.ini', config)
-
-    @staticmethod
-    def get_justify_length() -> int:
-        config = Config.read_config('defaults.ini')
-
-        return int(config['Misc']['justifyLength'])
-
-    @staticmethod
-    def change_justify_length(new_length: int):
-        config = Config.read_config('defaults.ini')
-
-        config['Misc']['justifyLength'] = new_length
-
-        Config.write_config('defaults.ini', config)
