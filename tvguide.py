@@ -23,7 +23,7 @@ def print_currently_running(data_source: dict, user_channels: list) -> None:
 
 
 def print_program_times(data_source: dict, user_channels: list, user_times: list) -> None:
-    print(f"\n----- Showing programs that start at: {', '.join(user_times)} for: {', '.join(user_channels).upper()} -----", end='')
+    print(f"\n----- Showing programs that is running at: {', '.join(user_times)} for: {', '.join(user_channels).upper()} -----", end='')
     for channel in user_channels:
         data_source[channel].print_times(user_times)
 
