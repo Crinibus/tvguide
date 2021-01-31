@@ -1,7 +1,7 @@
 import requests
 from const import API_LINK, REQUEST_HEADER, REQUEST_COOKIES
 from format import Format
-from Channel import Channel
+from tv import Channel
 
 
 class API:
