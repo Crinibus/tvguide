@@ -1,6 +1,6 @@
 from datetime import datetime
-from const import CHANNEL_NUMBER_INDEX
-from format import Format, Config
+from .const import CHANNEL_NUMBER_INDEX
+from .format import Format, Config
 
 
 class Channel:

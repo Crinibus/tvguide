@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from Config import Config
+from .Config import Config
 
 
 class Format:

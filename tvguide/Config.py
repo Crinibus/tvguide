@@ -1,5 +1,6 @@
 from configparser import ConfigParser
-import filemanager as fm
+# import filemanager as fm
+from .filemanager import Filemanager
 
 
 class Config:
@@ -18,7 +19,7 @@ class Config:
 
     @staticmethod
     def get_defaults_user_channels() -> list:
-        config = Config.read_config(f'{fm.get_root_path_repo()}/defaults.ini')
+        config = Config.read_config(f'{Filemanager.get_root_path()}/defaults.ini')
 
         defaultChannels = config['DefaultChannels']['channels']
 
@@ -26,7 +27,7 @@ class Config:
 
     @staticmethod
     def change_defaults_user_channels(new_defaults: list) -> None:
-        config = Config.read_config(f'{fm.get_root_path_repo()}/defaults.ini')
+        config = Config.read_config(f'{Filemanager.get_root_path()}/defaults.ini')
 
         config['DefaultChannels']['channels'] = ','.join(new_defaults)
 
@@ -34,13 +35,13 @@ class Config:
 
     @staticmethod
     def get_space_seperator() -> str:
-        config = Config.read_config(f'{fm.get_root_path_repo()}/defaults.ini')
+        config = Config.read_config(f'{Filemanager.get_root_path()}/defaults.ini')
 
         return config['Misc']['spaceSeperator']
 
     @staticmethod
     def change_space_seperator(new_space_seperator: str) -> None:
-        config = Config.read_config(f'{fm.get_root_path_repo()}/defaults.ini')
+        config = Config.read_config(f'{Filemanager.get_root_path()}/defaults.ini')
 
         config['Misc']['spaceSeperator'] = new_space_seperator
 
@@ -48,13 +49,13 @@ class Config:
 
     @staticmethod
     def get_justify_length() -> int:
-        config = Config.read_config(f'{fm.get_root_path_repo()}/defaults.ini')
+        config = Config.read_config(f'{Filemanager.get_root_path()}/defaults.ini')
 
         return int(config['Misc']['justifyLength'])
 
     @staticmethod
     def change_justify_length(new_length: int):
-        config = Config.read_config(f'{fm.get_root_path_repo()}/defaults.ini')
+        config = Config.read_config(f'{Filemanager.get_root_path()}/defaults.ini')
 
         config['Misc']['justifyLength'] = new_length
 
