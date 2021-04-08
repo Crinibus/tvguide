@@ -68,6 +68,9 @@ class Channel:
                     break
         print()
 
+    def __iter__(self):
+        return iter(self.programs)
+
 
 class Program:
     def __init__(self, program_info: dict, verbose: bool = False):
