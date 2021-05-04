@@ -35,11 +35,7 @@ def print_program_all(data_source: dict, user_channels: list) -> None:
         data_source[channel].print_all_programs()
 
 
-def main(args):
-    api_data = tv.API.get_data(args.day)
-
-    my_data = tv.API.format_data(api_data, args.verbose)
-
+def change_defaults(args, data: dict):
     if args.default_channels:
         tv.Config.change_defaults_user_channels(args.default_channels)
         print(f"Changed default channel(s) to: {', '.join(args.default_channels).upper()}")
@@ -56,29 +52,41 @@ def main(args):
         args.channel = tv.Config.get_defaults_user_channels()
         print(f"No channel(s) chosen: using default channels ({', '.join(args.channel).upper()})")
     elif args.channel[0].lower() == 'all':
-        args.channel = [channel for channel in my_data.keys()]
+        args.channel = [channel for channel in data.keys()]
 
+
+def print_programs(args, data):
     if args.now:
-        print_currently_running(my_data, args.channel)
+        print_currently_running(data, args.channel)
 
     if args.time:
-        print_program_times(my_data, args.channel, args.time)
+        print_program_times(data, args.channel, args.time)
 
     if args.category:
-        print_program_categories(my_data, args.channel, args.category)
+        print_program_categories(data, args.channel, args.category)
 
     if args.search:
-        print_program_searches(my_data, args.channel, args.search)
+        print_program_searches(data, args.channel, args.search)
 
     if args.all:
-        print_program_all(my_data, args.channel)
+        print_program_all(data, args.channel)
+
+
+def main():
+    args = tv.argparse_setup()
+
+    api_data = tv.API.get_data(args.day)
+
+    my_data = tv.API.format_data(api_data, args.verbose)
+
+    change_defaults(args, my_data)
+
+    print_programs(args, my_data)
 
 
 if __name__ == "__main__":
-    args = tv.argparse_setup()
-
     try:
-        main(args)
+        main()
     except KeyError:
         print("Check channel name or this scraper can't use this channel")
     except KeyboardInterrupt:
