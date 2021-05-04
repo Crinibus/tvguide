@@ -49,12 +49,9 @@ class Channel:
         print()
 
     def print_currently_running(self) -> None:
-        time = datetime.now()
-        time_now = time.strftime('%H%M')
-
         print(f"\n{Format.channel_name(self.name)}:")
         for program in self.programs:
-            if program.is_running(int(time_now)):
+            if program.is_running:
                 print(program.time_and_title)
         print()
 
@@ -127,8 +124,12 @@ class Program:
 
         return f"{time_and_title_cut.ljust(justify_length + 5)} ({', '.join(self.categories)})"
 
-    def is_running(self, time: int):
-        if time == self.time_start or (time > self.time_start and time < self.time_stop):
+    @property
+    def is_running(self) -> bool:
+        time = datetime.now()
+        time_now = int(time.strftime('%H%M'))
+
+        if time_now == self.time_start or (time_now > self.time_start and time_now < self.time_stop):
             return True
         
         return False
