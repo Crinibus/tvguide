@@ -1,6 +1,7 @@
 from datetime import datetime
 from .const import CHANNEL_NUMBER_INDEX
 from .format import Format, Config
+import time
 
 
 class Channel:
@@ -60,7 +61,7 @@ class Channel:
         for program in self.programs:
             for time in times:
                 time = Format.user_time(time)
-                if program.is_running(time):
+                if program.is_running_at(time):
                     print(program.time_and_title)
                     break
         print()
@@ -126,12 +127,17 @@ class Program:
 
     @property
     def is_running(self) -> bool:
-        time = datetime.now()
-        time_now = int(time.strftime('%H%M'))
+        time_now = time.time()
 
-        if time_now == self.time_start or (time_now > self.time_start and time_now < self.time_stop):
+        if time_now == self.time_start_unix or (self.time_start_unix < time_now < self.time_stop_unix):
             return True
-        
+
+        return False
+
+    def is_running_at(self, time: str):
+        if self.time_start <= time < self.time_stop:
+            return True
+
         return False
 
     def __str__(self) -> str:
