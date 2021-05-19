@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from .Config import Config
+import pytz
 
 
 class Format:
@@ -22,12 +23,10 @@ class Format:
     @staticmethod
     def convert_unix_time(unix_time: int, toShow: bool):
         """Convert UNIX times to hour and minutes, e.g.: 1604692800 -> 2000 or 20:00\n
-           Times are shifted from UTC to UTC+1 (CET)"""
+           UNIX time is converted to timezone: Europe/Copenhagen"""
 
-        # TODO: Use datetime timezone to convert to my timezone
-
-        time = datetime.utcfromtimestamp(unix_time)
-        time += timedelta(hours=1)
+        copenhagen_timezone = pytz.timezone("Europe/Copenhagen")
+        time = pytz.utc.localize(datetime.utcfromtimestamp(unix_time)).astimezone(copenhagen_timezone)
 
         if toShow:
             return time.strftime('%H:%M')
