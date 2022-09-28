@@ -10,7 +10,8 @@ def argparse_setup() -> ArgumentParser.parse_args:
         '--channel',
         dest='channel',
         help='the channel with the user want to see programs from',
-        action='append',
+        nargs="*",
+        action="extend",
         type=str
     )
 
@@ -20,7 +21,8 @@ def argparse_setup() -> ArgumentParser.parse_args:
         dest='time',
         metavar='hh:mm',
         help='the time the program starts. E.g. "20:00". Format is: "hh:mm"',
-        action='append',
+        nargs="*",
+        action="extend",
         type=str
     )
 
@@ -44,7 +46,8 @@ def argparse_setup() -> ArgumentParser.parse_args:
         '--category',
         dest='category',
         help='only show the programs with the chosen category(s)',
-        action='append',
+        nargs="*",
+        action="extend",
         type=str
     )
 
@@ -88,7 +91,8 @@ def argparse_setup() -> ArgumentParser.parse_args:
         '--search',
         dest='search',
         help='search for programs',
-        action='append',
+        nargs="*",
+        action="extend",
         type=str
     )
 
