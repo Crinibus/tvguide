@@ -6,31 +6,42 @@ import tvguide as tv
 
 
 def print_currently_running(data_source: dict, user_channels: list) -> None:
-    print(f"\n----- Showing currently running programs for: {', '.join(user_channels).upper()} -----", end='')
+    channels_string = ", ".join(user_channels).upper()
+
+    print(f"\n----- Showing currently running programs for: {channels_string} -----", end="")
     for channel in user_channels:
         data_source[channel].print_currently_running()
 
 
 def print_program_times(data_source: dict, user_channels: list, user_times: list) -> None:
-    print(f"\n----- Showing programs that is running at: {', '.join(user_times)} for: {', '.join(user_channels).upper()} -----", end='')
+    channels_string = ", ".join(user_channels).upper()
+    user_times_string = ", ".join(user_times)
+
+    print(f"\n----- Showing programs that is running at: {user_times_string} for: {channels_string} -----", end="")
     for channel in user_channels:
         data_source[channel].print_times(user_times)
 
 
 def print_program_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
-    print(f"\n----- Searching for categories: {', '.join(user_categories)} -----", end='')
+    user_categories_string = ", ".join(user_categories)
+
+    print(f"\n----- Searching for categories: {user_categories_string} -----", end="")
     for channel in user_channels:
         data_source[channel].print_categories(user_categories)
 
 
 def print_program_searches(data_source: dict, user_channels: list, user_searches: list) -> None:
-    print(f"\n----- Searching for keywords: {tv.Format.user_search(', '.join(user_searches))} -----", end='')
+    user_search_string = tv.Format.user_search(", ".join(user_searches))
+
+    print(f"\n----- Searching for keywords: {user_search_string} -----", end="")
     for channel in user_channels:
         data_source[channel].print_searches(user_searches)
 
 
 def print_program_all(data_source: dict, user_channels: list) -> None:
-    print(f"\n----- Showing all programs for: {', '.join(user_channels).upper()} -----", end='')
+    user_channels_string = ", ".join(user_channels).upper()
+
+    print(f"\n----- Showing all programs for: {user_channels_string} -----", end="")
     for channel in user_channels:
         data_source[channel].print_all_programs()
 
@@ -38,7 +49,8 @@ def print_program_all(data_source: dict, user_channels: list) -> None:
 def change_defaults(args, data: dict):
     if args.default_channels:
         tv.Config.change_defaults_user_channels(args.default_channels)
-        print(f"Changed default channel(s) to: {', '.join(args.default_channels).upper()}")
+        default_channels_string = ", ".join(args.default_channels).upper()
+        print(f"Changed default channel(s) to: {default_channels_string}")
 
     if args.default_space_seperator:
         tv.Config.change_space_seperator(args.default_space_seperator)
@@ -50,8 +62,9 @@ def change_defaults(args, data: dict):
 
     if not args.channel:
         args.channel = tv.Config.get_defaults_user_channels()
-        print(f"No channel(s) chosen: using default channels ({', '.join(args.channel).upper()})")
-    elif args.channel[0].lower() == 'all':
+        default_channels_string = ", ".join(args.channel).upper()
+        print(f"No channel(s) chosen: using default channels ({default_channels_string})")
+    elif args.channel[0].lower() == "all":
         args.channel = [channel for channel in data.keys()]
 
 
