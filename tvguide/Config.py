@@ -1,4 +1,6 @@
+from typing import List
 from configparser import ConfigParser
+
 from .filemanager import Filemanager
 
 
@@ -17,7 +19,7 @@ class Config:
             config.write(default_file)
 
     @staticmethod
-    def get_defaults_user_channels() -> list:
+    def get_defaults_user_channels() -> List[str]:
         config = Config.read(f'{Filemanager.get_root_path()}/defaults.ini')
 
         defaultChannels = config['DefaultChannels']['channels']
@@ -25,7 +27,7 @@ class Config:
         return defaultChannels.split(',')
 
     @staticmethod
-    def change_defaults_user_channels(new_defaults: list) -> None:
+    def change_defaults_user_channels(new_defaults: List[str]) -> None:
         config = Config.read(f'{Filemanager.get_root_path()}/defaults.ini')
 
         config['DefaultChannels']['channels'] = ','.join(new_defaults)
