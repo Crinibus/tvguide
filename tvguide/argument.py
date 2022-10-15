@@ -8,7 +8,7 @@ def argparse_setup() -> ArgumentParser.parse_args:
     parser.add_argument(
         '-c',
         '--channel',
-        dest='channel',
+        dest='channels',
         help='the channel with the user want to see programs from',
         nargs="*",
         action="extend",

@@ -60,29 +60,29 @@ def change_defaults(args, data: dict):
         tv.ConfigManager.change_justify_length(args.justify_length)
         print(f"Changed justify length to: {args.justify_length}")
 
-    if not args.channel:
-        default_channels_string = ", ".join(args.channel).upper()
-        args.channel = tv.ConfigManager.get_defaults_user_channels()
+    if not args.channels:
+        default_channels_string = ", ".join(args.channels).upper()
+        args.channels = tv.ConfigManager.get_defaults_user_channels()
         print(f"No channel(s) chosen: using default channels ({default_channels_string})")
-    elif args.channel[0].lower() == "all":
-        args.channel = [channel for channel in data.keys()]
+    elif args.channels[0].lower() == "all":
+        args.channels = [channel for channel in data.keys()]
 
 
 def print_programs(args, data):
     if args.now:
-        print_currently_running(data, args.channel)
+        print_currently_running(data, args.channels)
 
     if args.time:
-        print_program_times(data, args.channel, args.time)
+        print_program_times(data, args.channels, args.time)
 
     if args.category:
-        print_program_categories(data, args.channel, args.category)
+        print_program_categories(data, args.channels, args.category)
 
     if args.search:
-        print_program_searches(data, args.channel, args.search)
+        print_program_searches(data, args.channels, args.search)
 
     if args.all:
-        print_program_all(data, args.channel)
+        print_program_all(data, args.channels)
 
 
 def main():
