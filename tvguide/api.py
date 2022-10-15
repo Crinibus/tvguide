@@ -7,16 +7,14 @@ from .tv import Channel
 class ApiManager:
     @staticmethod
     def get_link(relative_date: int) -> str:
-        return API_LINK.replace("{date}", Format.get_specified_date(relative_date))
+        date = Format.get_specified_date(relative_date)
+        return API_LINK.replace("{date}", date)
 
     @staticmethod
     def get_data(relative_day: int) -> dict:
         """Get formatted data from API"""
-        response = requests.get(
-            ApiManager.get_link(relative_day),
-            headers=REQUEST_HEADER,
-            cookies=REQUEST_COOKIES
-        )
+        api_link = ApiManager.get_link(relative_day)
+        response = requests.get(api_link, headers=REQUEST_HEADER, cookies=REQUEST_COOKIES)
 
         return response.json()
 
