@@ -1,4 +1,4 @@
 from .format import Format
 from .argument import argparse_setup
-from .API import API
+from .api import ApiManager
 from .config import ConfigManager
