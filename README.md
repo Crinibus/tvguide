@@ -11,7 +11,7 @@ A program that gives the user a list over what comes in tv*.
 
 An example on how to use this program:
 ```
-python3 tvguide.py -c dr1 -c tv2 --all
+python3 main.py -c dr1 -c tv2 --all
 ```
 This prints all the programs that run today for the channels DR1 and TV2.
 
@@ -19,7 +19,7 @@ This prints all the programs that run today for the channels DR1 and TV2.
 
 Another example:
 ```
-python3 tvguide.py -c dr1 -c tv2 -t 20:00 -d 1
+python3 main.py -c dr1 -c tv2 -t 20:00 -d 1
 ```
 This prints only the tv-shows that start or is running at 8 pm the next day on the channels DR1 and TV2.
 
@@ -27,7 +27,7 @@ This prints only the tv-shows that start or is running at 8 pm the next day on t
 
 Another another example:
 ```
-python3 tvguide.py --now --verbose
+python3 main.py --now --verbose
 ```
 This prints the programs (with categories) that is currently running on the default channels.
 
@@ -59,7 +59,7 @@ If no channel(s) is chosen, the default channels is used. You can change the def
 
 For example:
 ```
-python3 tvguide.py -c [channel_1] -c [channel_2]
+python3 main.py -c [channel_1] -c [channel_2]
 ```
 **OBS**: when specifing channels with a space such as "TV2 News", use a dash (-) instead of a space. E.g. "TV2 News" -> "TV2-News"
 
@@ -67,14 +67,14 @@ You can also specify "all" as the first channel to get all channels.
 
 Examples:<br/>
 ```
-python3 tvguide.py -c dr1 -c tv2 --all
+python3 main.py -c dr1 -c tv2 --all
 ```
 This shows all the programs that run on DR1 and TV2 for today.
 
 <br/>
 
 ```
-python3 tvguide.py -c all --all
+python3 main.py -c all --all
 ```
 This shows all the programs that run on all channels for today.
 
@@ -89,7 +89,7 @@ You can specify multiple times.
 
 Example: <br/>
 ```
-python3 tvguide.py -t 19:30 -t 20:00
+python3 main.py -t 19:30 -t 20:00
 ```
 This shows the programs that start or is running at 7.30 pm and 8 pm today for the default channels.
 
@@ -102,7 +102,7 @@ By using the flag ```-d``` or ```--day``` you specify which day you want to see 
 
 Example: <br/>
 ```
-python3 tvguide.py -t 19:30 --day 1
+python3 main.py -t 19:30 --day 1
 ```
 This shows the programs that either starts or is running at 7.30 pm tomorrow on the default channels.
 
@@ -115,7 +115,7 @@ By using the flag ```-a``` or ```--all``` you want to see all the programs runni
 
 Example: <br/>
 ```
-python3 tvguide.py --all
+python3 main.py --all
 ```
 This shows all programs for today that runs on the default channels.
 
@@ -128,14 +128,14 @@ By using the flag ```--category``` you search after programs that have the speci
 
 Examples: <br/>
 ```
-python3 tvguide.py --category film
+python3 main.py --category film
 ```
 This shows all the programs that have the category "film" on the default channels for today.
 
 <br/>
 
 ```
-python3 tvguide.py --category film --category drama
+python3 main.py --category film --category drama
 ```
 This shows all the programs that have either the category "film" or "drama" on the default channels for today.
 
@@ -147,7 +147,7 @@ This shows all the programs that have either the category "film" or "drama" on t
 
 Example:
 ```
-python3 tvguide.py --now
+python3 main.py --now
 ```
 This shows what programs are currently running on the default channels.
 
@@ -159,7 +159,7 @@ This shows what programs are currently running on the default channels.
 
 Example:
 ```
-python3 tvguide.py --all --verbose
+python3 main.py --all --verbose
 ```
 This shows all the programs with categories for the default channels for today.
 
@@ -171,14 +171,14 @@ This shows all the programs with categories for the default channels for today.
 
 Examples:
 ```
-python3 tvguide.py --search avis
+python3 main.py --search avis
 ```
 This shows all the programs on the default channels for today that have the word "avis" in the title.
 
 <br/>
 
 ```
-python3 tvguide.py --search avis --search vejr
+python3 main.py --search avis --search vejr
 ```
 This shows all the programs on the default channels for today that have either the words "avis" or "vejr" in the title.
 
@@ -190,7 +190,7 @@ This shows all the programs on the default channels for today that have either t
 
 Example:
 ```
-python3 tvguide.py --default-channels dr1 tv2 canal-9
+python3 main.py --default-channels dr1 tv2 canal-9
 ```
 This changes the default channels to "DR1", "TV2" and "CANAL 9".
 
@@ -202,7 +202,7 @@ This changes the default channels to "DR1", "TV2" and "CANAL 9".
 
 Example:
 ```
-python3 tvguide.py --default-space-seperator -
+python3 main.py --default-space-seperator -
 ```
 This changes the default space seperator to the sign "-".
 
@@ -214,7 +214,7 @@ This changes the default space seperator to the sign "-".
 
 Example:
 ```
-python3 tvguide.py --justify-length 45
+python3 main.py --justify-length 45
 ```
 This changes the justify length to 45.
 
