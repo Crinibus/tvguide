@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from .Config import Config
+from .config import ConfigManager
 import pytz
 
 
@@ -37,7 +37,7 @@ class Format:
     def user_search(search: str) -> str:
         search = search.lower()
 
-        spaceSeperator  = Config.get_space_seperator()
+        spaceSeperator  = ConfigManager.get_space_seperator()
 
         return search.replace(spaceSeperator, ' ')
     

@@ -48,21 +48,21 @@ def print_program_all(data_source: dict, user_channels: list) -> None:
 
 def change_defaults(args, data: dict):
     if args.default_channels:
-        tv.Config.change_defaults_user_channels(args.default_channels)
+        tv.ConfigManager.change_defaults_user_channels(args.default_channels)
         default_channels_string = ", ".join(args.default_channels).upper()
         print(f"Changed default channel(s) to: {default_channels_string}")
 
     if args.default_space_seperator:
-        tv.Config.change_space_seperator(args.default_space_seperator)
+        tv.ConfigManager.change_space_seperator(args.default_space_seperator)
         print(f"Changed space seperator to: {args.default_space_seperator}")
 
     if args.justify_length:
-        tv.Config.change_justify_length(args.justify_length)
+        tv.ConfigManager.change_justify_length(args.justify_length)
         print(f"Changed justify length to: {args.justify_length}")
 
     if not args.channel:
-        args.channel = tv.Config.get_defaults_user_channels()
         default_channels_string = ", ".join(args.channel).upper()
+        args.channel = tv.ConfigManager.get_defaults_user_channels()
         print(f"No channel(s) chosen: using default channels ({default_channels_string})")
     elif args.channel[0].lower() == "all":
         args.channel = [channel for channel in data.keys()]

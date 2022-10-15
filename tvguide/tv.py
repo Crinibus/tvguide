@@ -1,6 +1,6 @@
 from datetime import datetime
 from .const import CHANNEL_NUMBER_INDEX
-from .format import Format, Config
+from .format import Format, ConfigManager
 import time
 
 
@@ -104,7 +104,7 @@ class Program:
     @property
     def time_and_title_and_category(self) -> str:
         time_and_title = f"{self.time_start_show} - {self.time_stop_show} > {self.title}"
-        justify_length = Config.get_justify_length()
+        justify_length = ConfigManager.get_justify_length()
 
         if len(time_and_title) > justify_length:
             time_and_title_cut = f"{time_and_title[:justify_length]}..."
@@ -116,7 +116,7 @@ class Program:
     @property
     def start_time_and_title_and_category(self) -> str:
         time_and_title = f"{self.time_start_show} > {self.title}"
-        justify_length = Config.get_justify_length()
+        justify_length = ConfigManager.get_justify_length()
 
         if len(time_and_title) > justify_length:
             time_and_title_cut = f"{time_and_title[:justify_length]}..."
