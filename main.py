@@ -88,9 +88,9 @@ def print_programs(args, data):
 def main():
     args = tv.argparse_setup()
 
-    api_data = tv.API.get_data(args.day)
+    api_data = tv.ApiManager.get_data(args.day)
 
-    my_data = tv.API.format_data(api_data, args.verbose)
+    my_data = tv.ApiManager.format_data(api_data, args.verbose)
 
     change_defaults(args, my_data)
 
