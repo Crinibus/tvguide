@@ -22,13 +22,11 @@ class Channel:
         self.programs.append(new_program)
 
     def print_all_programs(self) -> None:
-        print(f"\n{Format.channel_name(self.name)}:")
         for program in self.programs:
             print(program.start_time_and_title)
         print()
 
     def print_searches(self, search_terms: list) -> None:
-        print(f"\n{Format.channel_name(self.name)}:")
         for program in self.programs:
             for search in search_terms:
                 search = Format.user_search(search)
@@ -38,7 +36,6 @@ class Channel:
         print()
 
     def print_categories(self, categories: list) -> None:
-        print(f"\n{Format.channel_name(self.name)}:")
         for program in self.programs:
             for category in categories:
                 category = category.lower()
@@ -51,14 +48,12 @@ class Channel:
         print()
 
     def print_currently_running(self) -> None:
-        print(f"\n{Format.channel_name(self.name)}:")
         for program in self.programs:
             if program.is_running:
                 print(program.time_and_title)
         print()
 
     def print_times(self, times: list) -> None:
-        print(f"\n{Format.channel_name(self.name)}:")
         for program in self.programs:
             for time in times:
                 time = Format.user_time(time)
