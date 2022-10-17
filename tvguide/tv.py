@@ -1,3 +1,4 @@
+from typing import List
 from datetime import datetime
 from .const import CHANNEL_NUMBER_INDEX
 from .format import Format, ConfigManager
@@ -9,12 +10,12 @@ class Channel:
         self.verbose = verbose
         self.id = channel_info['id']
         self.name = CHANNEL_NUMBER_INDEX[self.id]
-        self.programs = []
+        self.programs: List[Program] = []
         self.format_program_info(channel_info)
 
     def format_program_info(self, channel_info: dict) -> None:
-        for program in channel_info['programs']:
-            self.add_program(program)
+        for program_dict in channel_info['programs']:
+            self.add_program(program_dict)
 
     def add_program(self, program_info: dict) -> None:
         new_program = Program(program_info, self.verbose)
