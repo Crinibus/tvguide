@@ -1,7 +1,10 @@
 import requests
+import requests_cache
 from .const import API_LINK, REQUEST_HEADER, REQUEST_COOKIES
 from .format import Format
 from .tv import Channel
+
+requests_cache.install_cache(cache_name="api_cache", expire_after=120, backend="sqlite")
 
 
 class ApiManager:
