@@ -61,7 +61,6 @@ For example:
 ```
 python3 main.py -c [channel_1] -c [channel_2]
 ```
-**OBS**: when specifing channels with a space such as "TV2 News", use a dash (-) instead of a space. E.g. "TV2 News" -> "TV2-News"
 
 You can also specify "all" as the first channel to get all channels.
 

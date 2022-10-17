@@ -5,11 +5,6 @@ import pytz
 
 class Format:
     @staticmethod
-    def channel_name(name: str) -> str:
-        name = name.replace("-", " ")
-        return name.upper()
-
-    @staticmethod
     def user_time(time: str) -> int:
         return int(time.replace(":", ""))
 
@@ -40,7 +35,7 @@ class Format:
         spaceSeperator  = ConfigManager.get_space_seperator()
 
         return search.replace(spaceSeperator, ' ')
-    
+
     @staticmethod
     def program_time_stop(time_start: int, time_stop: int) -> int:
         if time_start > time_stop:
