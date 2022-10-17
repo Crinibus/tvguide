@@ -15,11 +15,8 @@ class Channel:
 
     def format_program_info(self, channel_info: dict) -> None:
         for program_dict in channel_info['programs']:
-            self.add_program(program_dict)
-
-    def add_program(self, program_info: dict) -> None:
-        new_program = Program(program_info, self.verbose)
-        self.programs.append(new_program)
+            program = Program(program_dict, self.verbose)
+            self.programs.append(program)
 
     def print_all_programs(self) -> None:
         for program in self.programs:
