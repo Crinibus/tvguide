@@ -57,6 +57,9 @@ class TvGuide:
         for channel in channels:
             print(channel.name.upper())
 
+            if self.show_all_programs:
+                channel.print_all_programs()
+
     def get_channels(self, channel_names: List[str]) -> List[Channel]:
         return [channel for channel in self.channels if channel.name in channel_names]
 
