@@ -52,7 +52,7 @@ class TvGuide:
             self.channels.append(channel)
 
     def print_programs(self) -> None:
-        channels = self.get_channels(self.input_channels)
+        channels = self.channels if self.show_all_channels else self.get_channels(self.input_channels)
 
         for channel in channels:
             print(channel.name.upper())
