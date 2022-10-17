@@ -20,7 +20,7 @@ class ConfigManager:
 
     @staticmethod
     def get_defaults_user_channels() -> List[str]:
-        config = ConfigManager.read(f'{Filemanager.get_root_path()}/defaults.ini')
+        config = ConfigManager.read(Filemanager.defaults_ini_path)
 
         defaultChannels = config['DefaultChannels']['channels']
 
@@ -28,36 +28,36 @@ class ConfigManager:
 
     @staticmethod
     def change_defaults_user_channels(new_defaults: List[str]) -> None:
-        config = ConfigManager.read(f'{Filemanager.get_root_path()}/defaults.ini')
+        config = ConfigManager.read(Filemanager.defaults_ini_path)
 
         config['DefaultChannels']['channels'] = ','.join(new_defaults)
 
-        ConfigManager.write('defaults.ini', config)
+        ConfigManager.write(Filemanager.defaults_ini_path, config)
 
     @staticmethod
     def get_space_seperator() -> str:
-        config = ConfigManager.read(f'{Filemanager.get_root_path()}/defaults.ini')
+        config = ConfigManager.read(Filemanager.defaults_ini_path)
 
         return config['Misc']['spaceSeperator']
 
     @staticmethod
     def change_space_seperator(new_space_seperator: str) -> None:
-        config = ConfigManager.read(f'{Filemanager.get_root_path()}/defaults.ini')
+        config = ConfigManager.read(Filemanager.defaults_ini_path)
 
         config['Misc']['spaceSeperator'] = new_space_seperator
 
-        ConfigManager.write('defaults.ini', config)
+        ConfigManager.write(Filemanager.defaults_ini_path, config)
 
     @staticmethod
     def get_justify_length() -> int:
-        config = ConfigManager.read(f'{Filemanager.get_root_path()}/defaults.ini')
+        config = ConfigManager.read(Filemanager.defaults_ini_path)
 
         return int(config['Misc']['justifyLength'])
 
     @staticmethod
     def change_justify_length(new_length: int):
-        config = ConfigManager.read(f'{Filemanager.get_root_path()}/defaults.ini')
+        config = ConfigManager.read(Filemanager.defaults_ini_path)
 
         config['Misc']['justifyLength'] = new_length
 
-        ConfigManager.write('defaults.ini', config)
+        ConfigManager.write(Filemanager.defaults_ini_path, config)
