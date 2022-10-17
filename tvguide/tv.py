@@ -8,7 +8,7 @@ import time
 class Channel:
     def __init__(self, channel_info: dict, verbose: bool = False) -> None:
         self.verbose = verbose
-        self.id = channel_info['id']
+        self.id: str = channel_info['id']
         self.name = CHANNEL_NUMBER_INDEX[self.id]
         self.programs: List[Program] = []
         self.format_program_info(channel_info)
@@ -70,15 +70,15 @@ class Program:
         self.format_info()
 
     def format_info(self):
-        self.time_start_unix = self.info['start']
-        self.time_stop_unix = self.info['stop']
-        self.time_start = Format.convert_unix_time(self.time_start_unix, toShow=False)
-        self.time_stop = Format.program_time_stop(time_start=self.time_start, time_stop=Format.convert_unix_time(self.time_stop_unix, toShow=False))
-        self.time_start_show = Format.convert_unix_time(self.time_start_unix, toShow=True)
-        self.time_stop_show = Format.convert_unix_time(self.time_stop_unix, toShow=True)
-        self.title = self.info['title']
-        self.categories = [cat.lower() for cat in self.info['categories']]
-        self.id = self.info['id']
+        self.id: str = self.info['id']
+        self.title: str = self.info['title']
+        self.categories: List[str] = [category.lower() for category in self.info['categories']]
+        self.time_start_unix: int = self.info['start']
+        self.time_stop_unix: int = self.info['stop']
+        self.time_start: int = Format.convert_unix_time(self.time_start_unix, toShow=False)
+        self.time_stop: int = Format.program_time_stop(time_start=self.time_start, time_stop=Format.convert_unix_time(self.time_stop_unix, toShow=False))
+        self.time_start_show: str = Format.convert_unix_time(self.time_start_unix, toShow=True)
+        self.time_stop_show: str = Format.convert_unix_time(self.time_stop_unix, toShow=True)
 
     @property
     def time_and_title(self) -> str:
