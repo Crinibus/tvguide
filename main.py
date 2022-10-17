@@ -61,8 +61,8 @@ def change_defaults(args, data: dict):
         print(f"Changed justify length to: {args.justify_length}")
 
     if not args.channels:
-        default_channels_string = ", ".join(args.channels).upper()
         args.channels = tv.ConfigManager.get_defaults_user_channels()
+        default_channels_string = ", ".join(args.channels).upper()
         print(f"No channel(s) chosen: using default channels ({default_channels_string})")
     elif args.channels[0].lower() == "all":
         args.channels = [channel for channel in data.keys()]
