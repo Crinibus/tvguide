@@ -65,3 +65,9 @@ class ConfigManager:
         config['Misc']['justifyLength'] = new_length
 
         ConfigManager.write(Filemanager.defaults_ini_path, config)
+
+    @staticmethod
+    def get_timezone() -> str:
+        config = ConfigManager.read_defaults_config_file()
+
+        return config["Timezone"]["timezone"]
