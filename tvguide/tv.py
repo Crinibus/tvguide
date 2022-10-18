@@ -52,9 +52,9 @@ class Channel:
 
     def print_times(self, times: List[str]) -> None:
         for program in self.programs:
-            for time in times:
-                time = Format.user_time(time)
-                if program.is_running_at(time):
+            for print_time in times:
+                print_time = Format.user_time(print_time)
+                if program.is_running_at(print_time):
                     print(program.time_and_title)
                     break
         print()
