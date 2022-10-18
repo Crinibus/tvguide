@@ -32,7 +32,7 @@ class Format:
     def user_search(search: str) -> str:
         search = search.lower()
 
-        spaceSeperator  = ConfigManager.get_space_seperator()
+        spaceSeperator = ConfigManager.get_space_seperator()
 
         return search.replace(spaceSeperator, ' ')
 
