@@ -23,7 +23,7 @@ class Channel:
             print(program.start_time_and_title)
         print()
 
-    def print_searches(self, search_terms: list) -> None:
+    def print_searches(self, search_terms: List[str]) -> None:
         for program in self.programs:
             for search in search_terms:
                 search = Format.user_search(search)
@@ -32,7 +32,7 @@ class Channel:
                     break
         print()
 
-    def print_categories(self, categories: list) -> None:
+    def print_categories(self, categories: List[str]) -> None:
         for program in self.programs:
             for category in categories:
                 category = category.lower()
@@ -50,7 +50,7 @@ class Channel:
                 print(program.time_and_title)
         print()
 
-    def print_times(self, times: list) -> None:
+    def print_times(self, times: List[str]) -> None:
         for program in self.programs:
             for time in times:
                 time = Format.user_time(time)
