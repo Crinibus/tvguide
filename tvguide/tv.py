@@ -67,9 +67,9 @@ class Program:
     def __init__(self, program_info: dict, verbose: bool = False):
         self.info = program_info
         self.verbose = verbose
-        self.format_info()
+        self._format_info()
 
-    def format_info(self):
+    def _format_info(self):
         self.id: str = self.info['id']
         self.title: str = self.info['title']
         self.categories: List[str] = [category.lower() for category in self.info['categories']]
