@@ -19,8 +19,12 @@ class ConfigManager:
             config.write(default_file)
 
     @staticmethod
+    def read_defaults_config_file() -> ConfigParser:
+        return ConfigManager.read(Filemanager.defaults_ini_path)
+
+    @staticmethod
     def get_defaults_user_channels() -> List[str]:
-        config = ConfigManager.read(Filemanager.defaults_ini_path)
+        config = ConfigManager.read_defaults_config_file()
 
         defaultChannels = config['DefaultChannels']['channels']
 
@@ -28,7 +32,7 @@ class ConfigManager:
 
     @staticmethod
     def change_defaults_user_channels(new_defaults: List[str]) -> None:
-        config = ConfigManager.read(Filemanager.defaults_ini_path)
+        config = ConfigManager.read_defaults_config_file()
 
         config['DefaultChannels']['channels'] = ','.join(new_defaults)
 
@@ -36,13 +40,13 @@ class ConfigManager:
 
     @staticmethod
     def get_space_seperator() -> str:
-        config = ConfigManager.read(Filemanager.defaults_ini_path)
+        config = ConfigManager.read_defaults_config_file()
 
         return config['Misc']['spaceSeperator']
 
     @staticmethod
     def change_space_seperator(new_space_seperator: str) -> None:
-        config = ConfigManager.read(Filemanager.defaults_ini_path)
+        config = ConfigManager.read_defaults_config_file()
 
         config['Misc']['spaceSeperator'] = new_space_seperator
 
@@ -50,13 +54,13 @@ class ConfigManager:
 
     @staticmethod
     def get_justify_length() -> int:
-        config = ConfigManager.read(Filemanager.defaults_ini_path)
+        config = ConfigManager.read_defaults_config_file()
 
         return int(config['Misc']['justifyLength'])
 
     @staticmethod
     def change_justify_length(new_length: int):
-        config = ConfigManager.read(Filemanager.defaults_ini_path)
+        config = ConfigManager.read_defaults_config_file()
 
         config['Misc']['justifyLength'] = new_length
 
