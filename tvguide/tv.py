@@ -11,9 +11,9 @@ class Channel:
         self.id: str = channel_info['id']
         self.name = CHANNEL_NUMBER_INDEX[self.id]
         self.programs: List[Program] = []
-        self.format_program_info(channel_info)
+        self._parse_channel_info(channel_info)
 
-    def format_program_info(self, channel_info: dict) -> None:
+    def _parse_channel_info(self, channel_info: dict) -> None:
         for program_dict in channel_info['programs']:
             program = Program(program_dict, self.verbose)
             self.programs.append(program)
