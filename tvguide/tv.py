@@ -1,7 +1,8 @@
 from typing import Iterator, List
-from .const import CHANNEL_NUMBER_INDEX
-from .format import Format, ConfigManager
 import time
+
+from tvguide.const import CHANNEL_NUMBER_INDEX
+from tvguide.format import Format, ConfigManager
 
 
 class Program:

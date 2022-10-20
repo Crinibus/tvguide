@@ -1,7 +1,7 @@
 from typing import List
 import argparse
-from tvguide.config import ConfigManager
 
+from tvguide.config import ConfigManager
 from tvguide.tv import Channel
 
 

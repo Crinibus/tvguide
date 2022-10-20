@@ -2,7 +2,7 @@ from typing import List
 from configparser import ConfigParser
 from functools import cache
 
-from .filemanager import Filemanager
+from tvguide.filemanager import Filemanager
 
 
 class ConfigManager:
