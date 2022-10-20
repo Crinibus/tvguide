@@ -7,6 +7,10 @@ A program that gives the user a list over what comes in tv*.
 <br/>
 
 
+Requires ```python3.9+```
+
+<br/>
+
 # How to use <a name="how-to-use"></a>
 
 An example on how to use this program:
