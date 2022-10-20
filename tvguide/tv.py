@@ -62,14 +62,10 @@ class Program:
     @property
     def is_running(self) -> bool:
         time_now = time.time()
-
         return self.time_start_unix <= time_now < self.time_stop_unix
 
-    def is_running_at(self, time: str):
-        if self.time_start <= time < self.time_stop:
-            return True
-
-        return False
+    def is_running_at(self, time: int) -> bool:
+        return self.time_start <= time < self.time_stop
 
     def __str__(self) -> str:
         return self.time_and_title
