@@ -4,64 +4,6 @@ from .format import Format, ConfigManager
 import time
 
 
-class Channel:
-    def __init__(self, channel_info: dict, verbose: bool = False) -> None:
-        self.verbose = verbose
-        self.id: str = channel_info['id']
-        self.name = CHANNEL_NUMBER_INDEX[self.id]
-        self.programs: List[Program] = []
-        self._parse_channel_info(channel_info)
-
-    def _parse_channel_info(self, channel_info: dict) -> None:
-        for program_dict in channel_info['programs']:
-            program = Program(program_dict, self.verbose)
-            self.programs.append(program)
-
-    def print_all_programs(self) -> None:
-        for program in self.programs:
-            print(program.start_time_and_title)
-        print()
-
-    def print_searches(self, search_terms: List[str]) -> None:
-        for program in self.programs:
-            for search in search_terms:
-                search = Format.user_search(search)
-                if search in program.title.lower():
-                    print(program.time_and_title)
-                    break
-        print()
-
-    def print_categories(self, categories: List[str]) -> None:
-        for program in self.programs:
-            for category in categories:
-                category = category.lower()
-                if category in program.categories:
-                    print(f"{program.time_and_title} ({category.capitalize()})")
-                    break
-                elif program.categories == [] and category in ['nyheder']:
-                    print(f"{program.time_and_title} ({category.capitalize()})")
-                    break
-        print()
-
-    def print_currently_running(self) -> None:
-        for program in self.programs:
-            if program.is_running:
-                print(program.time_and_title)
-        print()
-
-    def print_times(self, times: List[str]) -> None:
-        for program in self.programs:
-            for print_time in times:
-                print_time = Format.user_time(print_time)
-                if program.is_running_at(print_time):
-                    print(program.time_and_title)
-                    break
-        print()
-
-    def __iter__(self):
-        return iter(self.programs)
-
-
 class Program:
     def __init__(self, program_info: dict, verbose: bool = False):
         self.info = program_info
@@ -134,3 +76,61 @@ class Program:
 
     def __repr__(self) -> str:
         return f"Program(program_info={self.info})"
+
+
+class Channel:
+    def __init__(self, channel_info: dict, verbose: bool = False) -> None:
+        self.verbose = verbose
+        self.id: str = channel_info['id']
+        self.name = CHANNEL_NUMBER_INDEX[self.id]
+        self.programs: List[Program] = []
+        self._parse_channel_info(channel_info)
+
+    def _parse_channel_info(self, channel_info: dict) -> None:
+        for program_dict in channel_info['programs']:
+            program = Program(program_dict, self.verbose)
+            self.programs.append(program)
+
+    def print_all_programs(self) -> None:
+        for program in self.programs:
+            print(program.start_time_and_title)
+        print()
+
+    def print_searches(self, search_terms: List[str]) -> None:
+        for program in self.programs:
+            for search in search_terms:
+                search = Format.user_search(search)
+                if search in program.title.lower():
+                    print(program.time_and_title)
+                    break
+        print()
+
+    def print_categories(self, categories: List[str]) -> None:
+        for program in self.programs:
+            for category in categories:
+                category = category.lower()
+                if category in program.categories:
+                    print(f"{program.time_and_title} ({category.capitalize()})")
+                    break
+                elif program.categories == [] and category in ['nyheder']:
+                    print(f"{program.time_and_title} ({category.capitalize()})")
+                    break
+        print()
+
+    def print_currently_running(self) -> None:
+        for program in self.programs:
+            if program.is_running:
+                print(program.time_and_title)
+        print()
+
+    def print_times(self, times: List[str]) -> None:
+        for program in self.programs:
+            for print_time in times:
+                print_time = Format.user_time(print_time)
+                if program.is_running_at(print_time):
+                    print(program.time_and_title)
+                    break
+        print()
+
+    def __iter__(self):
+        return iter(self.programs)
