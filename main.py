@@ -52,10 +52,6 @@ def change_defaults(args, data: dict):
         default_channels_string = ", ".join(args.default_channels).upper()
         print(f"Changed default channel(s) to: {default_channels_string}")
 
-    if args.default_space_seperator:
-        tv.ConfigManager.change_space_seperator(args.default_space_seperator)
-        print(f"Changed space seperator to: {args.default_space_seperator}")
-
     if args.justify_length:
         tv.ConfigManager.change_justify_length(args.justify_length)
         print(f"Changed justify length to: {args.justify_length}")

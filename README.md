@@ -45,7 +45,6 @@ This prints the programs (with categories) that is currently running on the defa
 - ```-v``` or ```--verbose```
 - ```-s [search-term]``` or ```--search [search-term]```
 - ```--default-channels [channel]```
-- ```--default-space-seperator [space-seperator]```
 - ```--justify-length [int]```
 
 <br/>
@@ -192,18 +191,6 @@ Example:
 python3 main.py --default-channels dr1 tv2 canal-9
 ```
 This changes the default channels to "DR1", "TV2" and "CANAL 9".
-
-<br/>
-
-
-## --default-space-seperator <a name="--default-space-seperator"></a>
-
-
-Example:
-```
-python3 main.py --default-space-seperator -
-```
-This changes the default space seperator to the sign "-".
 
 <br/>
 

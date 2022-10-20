@@ -39,20 +39,6 @@ class ConfigManager:
         ConfigManager.write(Filemanager.defaults_ini_path, config)
 
     @staticmethod
-    def get_space_seperator() -> str:
-        config = ConfigManager.read_defaults_config_file()
-
-        return config['Misc']['spaceSeperator']
-
-    @staticmethod
-    def change_space_seperator(new_space_seperator: str) -> None:
-        config = ConfigManager.read_defaults_config_file()
-
-        config['Misc']['spaceSeperator'] = new_space_seperator
-
-        ConfigManager.write(Filemanager.defaults_ini_path, config)
-
-    @staticmethod
     def get_justify_length() -> int:
         config = ConfigManager.read_defaults_config_file()
 

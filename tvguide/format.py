@@ -29,14 +29,6 @@ class Format:
             return int(time.strftime('%H%M'))
 
     @staticmethod
-    def user_search(search: str) -> str:
-        search = search.lower()
-
-        spaceSeperator = ConfigManager.get_space_seperator()
-
-        return search.replace(spaceSeperator, ' ')
-
-    @staticmethod
     def program_time_stop(time_start: int, time_stop: int) -> int:
         if time_start > time_stop:
             return 2400 + time_stop

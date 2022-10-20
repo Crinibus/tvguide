@@ -73,13 +73,6 @@ def argparse_setup() -> ArgumentParser.parse_args:
     )
 
     parser.add_argument(
-        '--default-space-seperator',
-        dest='default_space_seperator',
-        help='change space seperator sign',
-        type=str
-    )
-
-    parser.add_argument(
         '--justify-length',
         dest='justify_length',
         help='change justify length',
