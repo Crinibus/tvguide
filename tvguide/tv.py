@@ -5,6 +5,7 @@ from tvguide.const import CHANNEL_NUMBER_INDEX
 from tvguide.format import Format
 from tvguide.config import ConfigManager
 
+
 class Program:
     def __init__(self, program_info: dict, verbose: bool = False):
         self.info = program_info
