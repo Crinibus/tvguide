@@ -1,5 +1,6 @@
 from typing import List
 from configparser import ConfigParser
+from functools import cache
 
 from .filemanager import Filemanager
 
@@ -19,6 +20,7 @@ class ConfigManager:
             config.write(default_file)
 
     @staticmethod
+    @cache
     def read_defaults_config_file() -> ConfigParser:
         return ConfigManager.read(Filemanager.defaults_ini_path)
 
