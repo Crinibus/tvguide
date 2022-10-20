@@ -12,11 +12,13 @@ class TvGuide:
         self.show_now = False
         self.show_all_channels = False
         self.show_all_programs = False
-        self.show_time = False
-        self.input_time = None
-        self.search = False
+        self.search_times = False
+        self.search_categories = False
+        self.search_names = False
+        self.input_times: List[str] = []
         self.input_channels: List[str] = []
-        self.search_terms: List[str] = []
+        self.input_categories: List[str] = []
+        self.input_search_terms: List[str] = []
         self.channels: List[Channel] = []
 
     def parse_arguments(self, args: argparse.Namespace) -> None:
@@ -24,7 +26,6 @@ class TvGuide:
         self.show_now = args.now
         self.relative_date = args.day
         self.show_all_programs = args.all
-        self.search = args.search
 
         if args.default_channels:
             self._change_default_channels(args.default_channels)
@@ -32,9 +33,17 @@ class TvGuide:
         if args.justify_length:
             self._change_default_justify_length(args.justify_length)
 
+        if args.search:
+            self.search_names = True
+            self.input_search_terms = args.search
+
+        if args.category:
+            self.search_categories = True
+            self.input_categories = args.category
+
         if args.time:
-            self.show_time = True
-            self.input_time = args.time
+            self.search_times = True
+            self.input_times = args.time
 
         if not args.channels:
             self.input_channels = self.get_default_channels()
@@ -52,10 +61,32 @@ class TvGuide:
         channels = self.channels if self.show_all_channels else self.get_channels(self.input_channels)
 
         for channel in channels:
-            print(channel.name.upper())
+            print(f"\n{channel.name.upper()}")
 
             if self.show_all_programs:
+                print("----- ALL -----")
                 channel.print_all_programs()
+                print()
+
+            if self.search_categories:
+                print("----- CATEGORY -----")
+                channel.print_categories(self.input_categories)
+                print()
+
+            if self.search_times:
+                print("----- TIMES -----")
+                channel.print_times(self.input_times)
+                print()
+
+            if self.search_names:
+                print("----- SEARCH -----")
+                channel.print_searches(self.input_search_terms)
+                print()
+
+            if self.show_now:
+                print("----- NOW -----")
+                channel.print_currently_running()
+                print()
 
     def get_channels(self, channel_names: List[str]) -> List[Channel]:
         return [channel for channel in self.channels if channel.name in channel_names]
