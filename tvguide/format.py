@@ -12,20 +12,20 @@ class Format:
         """Convert relative date to real date, so that if argument 'relative_date' is 1, it get converted to tomorrow"""
         date = datetime.today()
         date += timedelta(days=relative_date)
-        return date.strftime('%Y-%m-%d')
+        return date.strftime("%Y-%m-%d")
 
     @staticmethod
     def convert_unix_time(unix_time: int, toShow: bool):
         """Convert UNIX times to hour and minutes, e.g.: 1604692800 -> 2000 or 20:00\n
-           UNIX time is converted to timezone: Europe/Copenhagen"""
+        UNIX time is converted to timezone: Europe/Copenhagen"""
 
         copenhagen_timezone = pytz.timezone("Europe/Copenhagen")
         time = pytz.utc.localize(datetime.utcfromtimestamp(unix_time)).astimezone(copenhagen_timezone)
 
         if toShow:
-            return time.strftime('%H:%M')
+            return time.strftime("%H:%M")
         else:
-            return int(time.strftime('%H%M'))
+            return int(time.strftime("%H%M"))
 
     @staticmethod
     def program_time_stop(time_start: int, time_stop: int) -> int:

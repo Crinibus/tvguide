@@ -16,7 +16,7 @@ class ConfigManager:
     @staticmethod
     def write(file_name: str, config: ConfigParser) -> None:
         """Write user settings in {file_name}.ini"""
-        with open(file_name, 'w') as default_file:
+        with open(file_name, "w") as default_file:
             config.write(default_file)
 
     @staticmethod
@@ -28,15 +28,15 @@ class ConfigManager:
     def get_defaults_user_channels() -> List[str]:
         config = ConfigManager.read_defaults_config_file()
 
-        defaultChannels = config['DefaultChannels']['channels']
+        defaultChannels = config["DefaultChannels"]["channels"]
 
-        return defaultChannels.split(',')
+        return defaultChannels.split(",")
 
     @staticmethod
     def change_defaults_user_channels(new_defaults: List[str]) -> None:
         config = ConfigManager.read_defaults_config_file()
 
-        config['DefaultChannels']['channels'] = ','.join(new_defaults)
+        config["DefaultChannels"]["channels"] = ",".join(new_defaults)
 
         ConfigManager.write(Filemanager.defaults_ini_path, config)
 
@@ -44,13 +44,13 @@ class ConfigManager:
     def get_justify_length() -> int:
         config = ConfigManager.read_defaults_config_file()
 
-        return int(config['Misc']['justifyLength'])
+        return int(config["Misc"]["justifyLength"])
 
     @staticmethod
     def change_justify_length(new_length: int):
         config = ConfigManager.read_defaults_config_file()
 
-        config['Misc']['justifyLength'] = new_length
+        config["Misc"]["justifyLength"] = new_length
 
         ConfigManager.write(Filemanager.defaults_ini_path, config)
 
