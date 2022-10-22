@@ -13,11 +13,11 @@ class Program:
         self._format_info()
 
     def _format_info(self):
-        self.id: str = self.info['id']
-        self.title: str = self.info['title']
-        self.categories: List[str] = [category.lower() for category in self.info['categories']]
-        self.time_start_unix: int = self.info['start']
-        self.time_stop_unix: int = self.info['stop']
+        self.id: str = self.info["id"]
+        self.title: str = self.info["title"]
+        self.categories: List[str] = [category.lower() for category in self.info["categories"]]
+        self.time_start_unix: int = self.info["start"]
+        self.time_stop_unix: int = self.info["stop"]
         self.time_start: int = Format.convert_unix_time(self.time_start_unix, toShow=False)
         temp_time_stop = Format.convert_unix_time(self.time_stop_unix, toShow=False)
         self.time_stop: int = Format.program_time_stop(time_start=self.time_start, time_stop=temp_time_stop)
@@ -80,13 +80,13 @@ class Program:
 class Channel:
     def __init__(self, channel_info: dict, verbose: bool = False) -> None:
         self.verbose = verbose
-        self.id: str = channel_info['id']
+        self.id: str = channel_info["id"]
         self.name = CHANNEL_NUMBER_INDEX[self.id]
         self.programs: List[Program] = []
         self._parse_channel_info(channel_info)
 
     def _parse_channel_info(self, channel_info: dict) -> None:
-        for program_dict in channel_info['programs']:
+        for program_dict in channel_info["programs"]:
             program = Program(program_dict, self.verbose)
             self.programs.append(program)
 
