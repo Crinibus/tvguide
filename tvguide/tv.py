@@ -107,6 +107,14 @@ class Channel:
 
     def print_currently_running(self) -> None:
         running_program = self._get_currently_running_program()
+
+        if not running_program:
+            print(
+                "*Could not find a running program"
+                " - if the time right now is after midnight before 6 am, try getting programs for yesterday*"
+            )
+            return
+
         print(running_program.time_and_title)
 
     def print_times(self, times: List[str]) -> None:
