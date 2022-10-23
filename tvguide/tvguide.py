@@ -47,6 +47,8 @@ class TvGuide:
 
         if not args.channels:
             self.input_channels = self.get_default_channels()
+            default_channels_string = ", ".join(self.input_channels).upper()
+            print(f"No channel(s) chosen - using default channels: {default_channels_string}")
         elif "all" in args.channels:
             self.show_all_channels = True
         else:
