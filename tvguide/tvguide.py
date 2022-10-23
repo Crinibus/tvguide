@@ -66,27 +66,30 @@ class TvGuide:
             print(f"\n{channel.name.upper()}")
 
             if self.show_all_programs:
-                print("----- ALL -----")
+                print("----- ALL PROGRAMS -----")
                 channel.print_all_programs()
                 print()
 
             if self.search_categories:
-                print("----- CATEGORY -----")
+                input_categories_string = ", ".join(self.input_categories)
+                print(f"----- PROGRAMS WITH CATEGORY(s): {input_categories_string} -----")
                 channel.print_categories(self.input_categories)
                 print()
 
             if self.search_times:
-                print("----- TIMES -----")
+                input_times_string = ", ".join(self.input_times)
+                print(f"----- RUNNING AT TIME(s): {input_times_string} -----")
                 channel.print_times(self.input_times)
                 print()
 
             if self.search_names:
-                print("----- SEARCH -----")
+                input_search_terms_string = ", ".join(self.input_search_terms)
+                print(f"----- SEARCH TERM(s): {input_search_terms_string} -----")
                 channel.print_searches(self.input_search_terms)
                 print()
 
             if self.show_now:
-                print("----- NOW -----")
+                print("----- CURRENTLY RUNNING -----")
                 channel.print_currently_running()
                 print()
 
