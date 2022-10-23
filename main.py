@@ -8,7 +8,7 @@ import tvguide as tv
 def print_currently_running(data_source: dict, user_channels: list) -> None:
     channels_string = ", ".join(user_channels).upper()
 
-    print(f"\n----- Showing currently running programs for: {channels_string} -----", end="")
+    print(f"\n----- Showing currently running programs for: {channels_string} -----")
     for channel in user_channels:
         data_source[channel].print_currently_running()
 
@@ -17,7 +17,7 @@ def print_program_times(data_source: dict, user_channels: list, user_times: list
     channels_string = ", ".join(user_channels).upper()
     user_times_string = ", ".join(user_times)
 
-    print(f"\n----- Showing programs that is running at: {user_times_string} for: {channels_string} -----", end="")
+    print(f"\n----- Showing programs that is running at: {user_times_string} for: {channels_string} -----")
     for channel in user_channels:
         data_source[channel].print_times(user_times)
 
@@ -25,7 +25,7 @@ def print_program_times(data_source: dict, user_channels: list, user_times: list
 def print_program_categories(data_source: dict, user_channels: list, user_categories: list) -> None:
     user_categories_string = ", ".join(user_categories)
 
-    print(f"\n----- Searching for categories: {user_categories_string} -----", end="")
+    print(f"\n----- Searching for categories: {user_categories_string} -----")
     for channel in user_channels:
         data_source[channel].print_categories(user_categories)
 
@@ -33,7 +33,7 @@ def print_program_categories(data_source: dict, user_channels: list, user_catego
 def print_program_searches(data_source: dict, user_channels: list, user_searches: list) -> None:
     user_search_string = tv.Format.user_search(", ".join(user_searches))
 
-    print(f"\n----- Searching for keywords: {user_search_string} -----", end="")
+    print(f"\n----- Searching for keywords: {user_search_string} -----")
     for channel in user_channels:
         data_source[channel].print_searches(user_searches)
 
@@ -41,7 +41,7 @@ def print_program_searches(data_source: dict, user_channels: list, user_searches
 def print_program_all(data_source: dict, user_channels: list) -> None:
     user_channels_string = ", ".join(user_channels).upper()
 
-    print(f"\n----- Showing all programs for: {user_channels_string} -----", end="")
+    print(f"\n----- Showing all programs for: {user_channels_string} -----")
     for channel in user_channels:
         data_source[channel].print_all_programs()
 
