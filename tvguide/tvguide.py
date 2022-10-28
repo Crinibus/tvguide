@@ -7,14 +7,14 @@ from tvguide.tv import Channel
 
 class TvGuide:
     def __init__(self) -> None:
-        self.relative_date = 0
-        self.verbose = False
-        self.show_now = False
-        self.show_all_channels = False
-        self.show_all_programs = False
-        self.search_times = False
-        self.search_categories = False
-        self.search_names = False
+        self.relative_date: int = 0
+        self.verbose: bool = False
+        self.show_now: bool = False
+        self.show_all_channels: bool = False
+        self.show_all_programs: bool = False
+        self.search_times: bool = False
+        self.search_categories: bool = False
+        self.search_names: bool = False
         self.input_times: List[str] = []
         self.input_channels: List[str] = []
         self.input_categories: List[str] = []
