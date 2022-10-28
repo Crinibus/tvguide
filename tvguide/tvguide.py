@@ -19,7 +19,7 @@ class TvGuide:
         self.input_channels: List[str] = []
         self.input_categories: List[str] = []
         self.input_search_terms: List[str] = []
-        self.channels: List[Channel] = []
+        self.all_channels: List[Channel] = []
 
     def parse_arguments(self, args: argparse.Namespace) -> None:
         self.verbose = args.verbose
@@ -57,10 +57,10 @@ class TvGuide:
     def parse_api_data(self, api_data: dict) -> None:
         for channel_dict in api_data:
             channel = Channel(channel_dict, self.verbose)
-            self.channels.append(channel)
+            self.all_channels.append(channel)
 
     def print_programs(self) -> None:
-        channels = self.channels if self.show_all_channels else self.get_channels(self.input_channels)
+        channels = self.all_channels if self.show_all_channels else self.get_channels(self.input_channels)
 
         for channel in channels:
             print(f"\n{channel.name.upper()}")
@@ -94,7 +94,7 @@ class TvGuide:
                 print()
 
     def get_channels(self, channel_names: List[str]) -> List[Channel]:
-        return [channel for channel in self.channels if channel.name in channel_names]
+        return [channel for channel in self.all_channels if channel.name in channel_names]
 
     def _change_default_channels(self, channels: List[str]) -> None:
         ConfigManager.change_defaults_user_channels(channels)
