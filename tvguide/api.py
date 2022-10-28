@@ -21,13 +21,3 @@ class ApiManager:
         response = requests.get(api_link, headers=REQUEST_HEADER, cookies=REQUEST_COOKIES)
 
         return response.json()
-
-    @staticmethod
-    def format_data(api_data: dict, verbose: bool) -> dict:
-        formatted_data = {}
-
-        for channel in api_data:
-            temp_channel = Channel(channel, verbose)
-            formatted_data.update({temp_channel.name: temp_channel})
-
-        return formatted_data
