@@ -1,7 +1,7 @@
 import pathlib
 
+
 class Filemanager:
-    @staticmethod
-    def get_root_path():
-        """Return root path of this repository"""
-        return pathlib.Path(__file__).parent.absolute()
+    # root path of this repository
+    root_path = pathlib.Path(__file__).parent.parent.absolute()
+    defaults_ini_path = f"{root_path}/tvguide/defaults.ini"

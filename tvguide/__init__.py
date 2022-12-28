@@ -1,4 +1,5 @@
 from .format import Format
 from .argument import argparse_setup
-from .API import API
-from .Config import Config
+from .api import ApiManager
+from .config import ConfigManager
+from .tvguide import TvGuide

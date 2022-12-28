@@ -7,11 +7,15 @@ A program that gives the user a list over what comes in tv*.
 <br/>
 
 
+Requires ```python3.9+```
+
+<br/>
+
 # How to use <a name="how-to-use"></a>
 
 An example on how to use this program:
 ```
-python3 main.py -c dr1 -c tv2 --all
+python3 main.py -c dr1 tv2 --all
 ```
 This prints all the programs that run today for the channels DR1 and TV2.
 
@@ -19,7 +23,7 @@ This prints all the programs that run today for the channels DR1 and TV2.
 
 Another example:
 ```
-python3 main.py -c dr1 -c tv2 -t 20:00 -d 1
+python3 main.py -c dr1 tv2 -t 20:00 -d 1
 ```
 This prints only the tv-shows that start or is running at 8 pm the next day on the channels DR1 and TV2.
 
@@ -45,7 +49,6 @@ This prints the programs (with categories) that is currently running on the defa
 - ```-v``` or ```--verbose```
 - ```-s [search-term]``` or ```--search [search-term]```
 - ```--default-channels [channel]```
-- ```--default-space-seperator [space-seperator]```
 - ```--justify-length [int]```
 
 <br/>
@@ -53,21 +56,23 @@ This prints the programs (with categories) that is currently running on the defa
 
 ## --channel <a name="--channel"></a>
 
-By using the flag ```-c``` or ```--channel``` you specify which channels you want the program to show tv-shows from. Replace "[channel]" with wanted channel, e.g. "dr1". <br/>
-You can specify multiple channels just by using the ```-c``` flag again.<br/>
+By using the flag ```-c``` or ```--channel``` you specify which channels you want the program to show tv-shows from. Replace "[channel]" with wanted channel(s), e.g. "dr1". <br/>
 If no channel(s) is chosen, the default channels is used. You can change the default channels as described [here](#--default-channels)
 
 For example:
 ```
 python3 main.py -c [channel_1] -c [channel_2]
 ```
-**OBS**: when specifing channels with a space such as "TV2 News", use a dash (-) instead of a space. E.g. "TV2 News" -> "TV2-News"
+or
+```
+python3 main.py -c [channel_1] [channel_2]
+```
 
 You can also specify "all" as the first channel to get all channels.
 
 Examples:<br/>
 ```
-python3 main.py -c dr1 -c tv2 --all
+python3 main.py -c dr1 tv2 --all
 ```
 This shows all the programs that run on DR1 and TV2 for today.
 
@@ -135,7 +140,7 @@ This shows all the programs that have the category "film" on the default channel
 <br/>
 
 ```
-python3 main.py --category film --category drama
+python3 main.py --category film drama
 ```
 This shows all the programs that have either the category "film" or "drama" on the default channels for today.
 
@@ -178,7 +183,7 @@ This shows all the programs on the default channels for today that have the word
 <br/>
 
 ```
-python3 main.py --search avis --search vejr
+python3 main.py --search avis vejr
 ```
 This shows all the programs on the default channels for today that have either the words "avis" or "vejr" in the title.
 
@@ -193,18 +198,6 @@ Example:
 python3 main.py --default-channels dr1 tv2 canal-9
 ```
 This changes the default channels to "DR1", "TV2" and "CANAL 9".
-
-<br/>
-
-
-## --default-space-seperator <a name="--default-space-seperator"></a>
-
-
-Example:
-```
-python3 main.py --default-space-seperator -
-```
-This changes the default space seperator to the sign "-".
 
 <br/>
 

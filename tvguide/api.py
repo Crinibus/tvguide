@@ -1,0 +1,23 @@
+import requests
+import requests_cache
+
+from tvguide.const import API_LINK, REQUEST_HEADER, REQUEST_COOKIES
+from tvguide.format import Format
+from tvguide.tv import Channel
+
+requests_cache.install_cache(cache_name="api_cache", expire_after=120, backend="filesystem")
+
+
+class ApiManager:
+    @staticmethod
+    def get_link(relative_date: int) -> str:
+        date = Format.get_specified_date(relative_date)
+        return API_LINK.replace("{date}", date)
+
+    @staticmethod
+    def get_data(relative_day: int) -> dict:
+        """Get formatted data from API"""
+        api_link = ApiManager.get_link(relative_day)
+        response = requests.get(api_link, headers=REQUEST_HEADER, cookies=REQUEST_COOKIES)
+
+        return response.json()
